@@ -1,7 +1,10 @@
 const Dashboard = React.createClass({
   render: function() {
     return(
-      <h1>react component</h1>
+      <div>
+        <a href="/owner/signup">Sign up as owner</a>
+        <a href="/walker/signup">Sign up as walker</a>
+      </div>
     )
   }
 })
