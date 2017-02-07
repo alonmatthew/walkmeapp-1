@@ -3,8 +3,7 @@ const
   passport = require('passport'),
   ownerSchema = new mongoose.Schema({
     local: {
-      fName: String,
-      lName: String,
+      name: String,
       password: String
     },
     dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}]

@@ -1,16 +1,7 @@
 const
   passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
-  User = require('../models/User.js')
-
-// test user
-  // var newUser = new User()
-  // newUser.local.email = "email"
-  // newUser.local.password = newUser.generateHash("password")
-  // newUser.save((err) => {
-  //   console.log("successfully saved user")
-  //   // return done(null, newUser, null)
-  // })
+  Owner = require('../models/Owner.js')
 
 passport.serializeUser((user, done) => {
   done(null, user.id)
@@ -23,24 +14,25 @@ passport.deserializeUser((id, done) => {
 })
 
 passport.use('local-signup', new LocalStrategy({
-  usernameField: 'email',
+  usernameField: 'name',
   passwordField: 'password',
   passReqToCallback: true
-}, (req, email, password, done) => {
-  User.findOne({'local.email': email}, (err, user) => {
+}, (req, name, password, done) => {
+  console.log("local signup hit")
+  Owner.findOne({'local.name': name}, (err, owner) => {
     if(err) {
       return done(err)
     }
-    if(user) {
-      return done(null, false, req.flash('signupMessage', 'That email is taken.'))
+    if(owner) {
+      return done(null, false, req.flash('signupMessage', 'That username is taken.'))
     }
-    var newUser = new User()
-    newUser.local.email = email
-    newUser.local.password = newUser.generateHash(password)
-    newUser.local.name = req.body.name
-    newUser.save((err, user) => {
+    var newOwner = new Owner()
+    newOwner.local.name = name
+    newOwner.local.password = newOwner.generateHash(password)
+    // newOwner.local.name = req.body.name
+    newOwner.save((err, owner) => {
       if(err) return done(err, false)
-      return done(null, user, null)
+      return done(null, owner, null)
     })
   })
 }))
