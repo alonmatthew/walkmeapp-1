@@ -1,7 +1,7 @@
 {
   "name": "project4",
   "version": "1.0.0",
-  "description": "",
+  "description": "-User can render a homepage where he/she can search for nearby walkers based on your IP address without logging in. -User can create an account as a 'dog owner' and/or 'dog walker'. -User can log in as 'dog owner'. -User can log in as 'dog walker'. -User has access to his/her dashboard once logged in. -User can locate nearby walks if logged in as a 'dog walker' based on his/her IP address. -User can schedule a walk if logged in as a 'dog owner'. -User can see his/her schedule of booked walks as a 'dog walker'. -User can see his/her schedule of walks as a 'dog owner' and the information of the matched 'dog walker'. -User can see the real-time geolocation and path of the 'dog walker' and dog once the walk has begun.",
   "main": "server/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -28,5 +28,13 @@
     "gulp-nodemon": "^2.2.1",
     "gulp-uglify": "^2.0.1",
     "gulp-uglifycss": "^1.0.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joellepfernandez/walkmeapp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/joellepfernandez/walkmeapp/issues"
+  },
+  "homepage": "https://github.com/joellepfernandez/walkmeapp#readme"
 }
