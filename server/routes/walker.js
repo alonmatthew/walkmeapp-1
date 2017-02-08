@@ -1,7 +1,10 @@
 const
   express = require('express'),
-  Walker = require('../models/Walker.js'),
-  walkerRoutes = express.Router()
+  passport = require('passport'),
+  passportConfig = require('../config/passport.js'),
+  walkerRoutes = express.Router(),
+  Dog = require('../models/Dog.js'),
+  Walker = require('../models/Walker.js')
 
 walkerRoutes.route('/')
   .get((req,res) => {
@@ -12,6 +15,10 @@ walkerRoutes.route('/signup')
   .get((req,res) => {
     res.sendFile(process.env.PWD + '/client/public/templates/walkerSignup.html')
   })
+  .post(passport.authenticate('local-walker-signup', {
+    successRedirect: '/walker/profile',
+    failureRedirect: '/walker/signup'
+  }))
 
 walkerRoutes.route('/profile')
   .get((req,res) => {

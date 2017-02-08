@@ -1,19 +1,20 @@
 const
   passport = require('passport'),
   LocalStrategy = require('passport-local').Strategy,
-  Owner = require('../models/Owner.js')
+  Owner = require('../models/Owner.js'),
+  Walker = require('../models/Walker.js')
 
-passport.serializeUser((user, done) => {
-  done(null, user.id)
+passport.serializeUser((owner, done) => {
+  done(null, owner.id)
 })
 
 passport.deserializeUser((id, done) => {
-  User.findById(id, (err, user) =>{
-    done(err, user)
+  Owner.findById(id, (err, owner) =>{
+    done(err, owner)
   })
 })
 
-passport.use('local-signup', new LocalStrategy({
+passport.use('local-owner-signup', new LocalStrategy({
   usernameField: 'name',
   passwordField: 'password',
   passReqToCallback: true
@@ -30,9 +31,34 @@ passport.use('local-signup', new LocalStrategy({
     newOwner.local.name = name
     newOwner.local.password = newOwner.generateHash(password)
     // newOwner.local.name = req.body.name
+    // console.log(newOwner)
     newOwner.save((err, owner) => {
       if(err) return done(err, false)
       return done(null, owner, null)
+    })
+  })
+}))
+passport.use('local-walker-signup', new LocalStrategy({
+  usernameField: 'name',
+  passwordField: 'password',
+  passReqToCallback: true
+}, (req, name, password, done) => {
+  console.log("local signup hit")
+  Walker.findOne({'local.name': name}, (err, walker) => {
+    if(err) {
+      return done(err)
+    }
+    if(walker) {
+      return done(null, false, req.flash('signupMessage', 'That username is taken.'))
+    }
+    var newWalker = new Walker()
+    newWalker.local.name = name
+    newWalker.local.password = newWalker.generateHash(password)
+    // newOwner.local.name = req.body.name
+    // console.log(newOwner)
+    newWalker.save((err, walker) => {
+      if(err) return done(err, false)
+      return done(null, walker, null)
     })
   })
 }))

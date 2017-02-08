@@ -13,7 +13,7 @@ const OwnerForm = React.createClass({
         <form method="POST" action="/owner/signup">
           Full Name: <input type="text" name="name"/><br />
           Password: <input type="password" name="password"/><br />
-          <button type="submit">Submit</button>
+          <button type="submit">Sign Up</button>
         </form>
       </div>
     )

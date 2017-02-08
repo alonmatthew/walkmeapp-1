@@ -1,6 +1,7 @@
 const
   mongoose = require('mongoose'),
   passport = require('passport'),
+  bcrypt = require('bcrypt-nodejs'),
   ownerSchema = new mongoose.Schema({
     local: {
       name: String,
