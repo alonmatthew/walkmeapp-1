@@ -1,10 +1,10 @@
 const
   mongoose = require('mongoose'),
   passport = require('passport'),
+  bcrypt = require('bcrypt-nodejs'),
   walkerSchema = new mongoose.Schema({
     local: {
-      fName: String,
-      lName: String,
+      name: String,
       password: String
     },
     dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}]

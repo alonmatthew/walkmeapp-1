@@ -10,10 +10,10 @@ const OwnerForm = React.createClass({
   render: function() {
     return(
       <div>
-        <form>
-          First Name: <input type="text" /><br />
-          Last Name: <input type="text" /><br />
-          Password: <input type="password" />
+        <form method="POST" action="/owner/signup">
+          Full Name: <input type="text" name="name"/><br />
+          Password: <input type="password" name="password"/><br />
+          <button type="submit">Sign Up</button>
         </form>
       </div>
     )
