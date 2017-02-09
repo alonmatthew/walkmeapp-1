@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <script src="http://cdn.pubnub.com/pubnub-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">s
 
     <style>
       html, body, #map-canvas {
@@ -15,8 +15,6 @@
         padding: 0px
       }
     </style>
-
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 
   </head>
   <body>
@@ -95,8 +93,8 @@
 
     function pubs() {
       pubnub = PUBNUB.init({
-        publish_key: 'demo',
-        subscribe_key: 'demo'
+        publish_key: 'pub-c-3a56cc93-eb87-425e-b7f5-d24a96c06c7d',
+        subscribe_key: 'sub-c-9f14d376-ee2b-11e6-8bf6-02ee2ddab7fe'
       })
 
       pubnub.subscribe({
@@ -112,7 +110,10 @@
       })
     }
 
+
     </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxHz4nxwO8le4A_cvbpwSV9TeO8GCw2lE"></script>
+
 
     <br>
   </body>
