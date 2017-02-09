@@ -12,13 +12,14 @@ const
   ownerRoutes = require('./routes/owner.js'),
   walkerRoutes = require('./routes/walker.js'),
   dotenv = require('dotenv').load({silent: true}),
+  flash = require('connect-flash'),
 
   PORT = process.env.port || 3000,
   mongooseConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/walkme-app'
 
 // mongodb connection
 mongoose.connect(mongooseConnectionString, (err) => {
-  console.log(err || "Connected to MongoDB(walkme-app) @" + process.env.MONGODB_URL)
+  console.log(err || "Connected to MongoDB(walkme-app)")
 })
 
 // middleware
@@ -27,7 +28,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(express.static(process.env.PWD + '/client/public'))
-
+app.use(flash())
 app.use(session({
 	secret: 'boooooooooom',
 	cookie: {maxAge: 60000000},
@@ -44,6 +45,13 @@ app.set('view engine', 'html')
 app.use('/', appRoutes)
 app.use('/owner', ownerRoutes)
 app.use('/walker', walkerRoutes)
+
+// currentUser:
+app.use((req, res, next) => {
+	app.locals.currentUser = req.owner || req.walker
+	app.locals.loggedIn = !!req.owner || !!req.walker
+  next()
+})
 
 // server connection
 app.listen(PORT, (err) => {

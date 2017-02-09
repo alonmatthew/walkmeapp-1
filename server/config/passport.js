@@ -1,5 +1,6 @@
 const
   passport = require('passport'),
+  flash = require('connect-flash'),
   LocalStrategy = require('passport-local').Strategy,
   Owner = require('../models/Owner.js'),
   Walker = require('../models/Walker.js')
