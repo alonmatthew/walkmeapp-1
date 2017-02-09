@@ -46,6 +46,13 @@ app.use('/', appRoutes)
 app.use('/owner', ownerRoutes)
 app.use('/walker', walkerRoutes)
 
+// currentUser:
+app.use((req, res, next) => {
+	app.locals.currentUser = req.owner || req.walker
+	app.locals.loggedIn = !!req.owner || !!req.walker
+  next()
+})
+
 // server connection
 app.listen(PORT, (err) => {
   console.log(err || "Server running on port: " + PORT)

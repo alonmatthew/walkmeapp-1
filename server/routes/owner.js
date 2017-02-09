@@ -40,4 +40,10 @@ ownerRouter.route('/logout')
     res.redirect('/')
   })
 
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()) return next()
+  req.flash('loginMessage', 'You must be logged in to see that.')
+  res.redirect('/login')
+}
+
 module.exports = ownerRouter
