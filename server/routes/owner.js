@@ -40,6 +40,12 @@ ownerRouter.route('/logout')
     res.redirect('/')
   })
 
+ownerRouter.route('/status')
+  .get((req, res) => {
+  if (!req.isAuthenticated()) return res.status(200).json({ status: false })
+  res.status(200).json({ status: true, user: req.user })
+  })
+
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()) return next()
   req.flash('loginMessage', 'You must be logged in to see that.')
