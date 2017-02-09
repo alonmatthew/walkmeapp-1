@@ -20,18 +20,25 @@ walkerRoutes.route('/signup')
     failureRedirect: '/walker/signup'
   }))
 
+walkerRoutes.route('/profile')
+  .get((req,res) => {
+    res.sendFile(process.env.PWD + '/client/public/templates/walkerProfile.html')
+  })
+
 walkerRoutes.route('/login')
   .get((req,res) => {
     res.sendFile(process.env.PWD + '/client/public/templates/walkerLogin.html')
   })
-  .post(passport.authenticate('local-login', {
+  .post(passport.authenticate('local-walker-login', {
     successRedirect: '/walker/profile',
     failureRedirect: '/walker/login'
   }))
 
-walkerRoutes.route('/profile')
+walkerRoutes.route('/logout')
   .get((req,res) => {
-      res.sendFile(process.env.PWD + '/client/public/templates/walkerProfile.html')
-    })
+  req.logout()
+  res.redirect('/')
+})
+
 
 module.exports = walkerRoutes
