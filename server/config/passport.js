@@ -64,15 +64,15 @@ passport.use('local-walker-signup', new LocalStrategy({
 }))
 
 passport.use('local-login', new LocalStrategy({
-  usernameField: 'email',
+  usernameField: 'name',
   passwordField: 'password',
   passReqToCallback: true
-}, (req, email, password, done) => {
-  User.findOne({'local.email': email}, (err, user) => {
+}, (req, name, password, done) => {
+  Walker.findOne({'local.name': name}, (err, walker) => {
     if(err) return done(err)
-    if(!user) return done(null, false, req.flash('loginMessage', 'No user found...'))
-    if(!user.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Wrong Password'))
-    return done(null, user)
+    if(!walker) return done(null, false, req.flash('loginMessage', 'No user found...'))
+    if(!walker.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Wrong Password'))
+    return done(null, walker)
   })
 }))
 
