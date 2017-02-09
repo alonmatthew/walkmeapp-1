@@ -12,6 +12,7 @@ const
   ownerRoutes = require('./routes/owner.js'),
   walkerRoutes = require('./routes/walker.js'),
   dotenv = require('dotenv').load({silent: true}),
+  flash = require('connect-flash'),
 
   PORT = process.env.port || 3000,
   mongooseConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/walkme-app'
@@ -27,7 +28,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(cookieParser())
 app.use(express.static(process.env.PWD + '/client/public'))
-
+app.use(flash())
 app.use(session({
 	secret: 'boooooooooom',
 	cookie: {maxAge: 60000000},

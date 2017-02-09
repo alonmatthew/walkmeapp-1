@@ -13,7 +13,7 @@ ownerRouter.route('/')
 
 ownerRouter.route('/signup')
   .get((req,res) => {
-    res.sendFile(process.env.PWD + '/client/public/templates/ownerSignup.html')
+    res.sendFile(process.env.PWD + '/client/public/templates/ownerSignup.html', {message: req.flash('signupMessage')})
   })
   .post(passport.authenticate('local-owner-signup', {
       successRedirect: '/owner/profile',
@@ -27,7 +27,7 @@ ownerRouter.route('/profile')
 
 ownerRouter.route('/login')
   .get((req,res) => {
-    res.sendFile(process.env.PWD + '/client/public/templates/ownerLogin.html')
+    res.sendFile(process.env.PWD + '/client/public/templates/ownerLogin.html', {message: req.flash('loginMessage')})
   })
   .post(passport.authenticate('local-owner-login', {
     successRedirect: '/owner/profile',
