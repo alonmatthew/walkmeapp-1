@@ -1,5 +1,6 @@
 const
   passport = require('passport'),
+  flash = require('connect-flash'),
   LocalStrategy = require('passport-local').Strategy,
   Owner = require('../models/Owner.js'),
   Walker = require('../models/Walker.js')
@@ -63,16 +64,29 @@ passport.use('local-walker-signup', new LocalStrategy({
   })
 }))
 
-passport.use('local-login', new LocalStrategy({
-  usernameField: 'email',
+passport.use('local-walker-login', new LocalStrategy({
+  usernameField: 'name',
   passwordField: 'password',
   passReqToCallback: true
-}, (req, email, password, done) => {
-  User.findOne({'local.email': email}, (err, user) => {
+}, (req, name, password, done) => {
+  Walker.findOne({'local.name': name}, (err, walker) => {
     if(err) return done(err)
-    if(!user) return done(null, false, req.flash('loginMessage', 'No user found...'))
-    if(!user.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Wrong Password'))
-    return done(null, user)
+    if(!walker) return done(null, false, req.flash('loginMessage', 'No user found...'))
+    if(!walker.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Wrong Password'))
+    return done(null, walker)
+  })
+}))
+
+passport.use('local-owner-login', new LocalStrategy({
+  usernameField: 'name',
+  passwordField: 'password',
+  passReqToCallback: true
+}, (req, name, password, done) => {
+  Owner.findOne({'local.name': name}, (err, owner) => {
+    if(err) return done(err)
+    if(!owner) return done(null, false, req.flash('loginMessage', 'No user found...'))
+    if(!owner.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Wrong Password'))
+    return done(null, owner)
   })
 }))
 
