@@ -25,4 +25,19 @@ ownerRouter.route('/profile')
     res.sendFile(process.env.PWD + '/client/public/templates/ownerProfile.html')
   })
 
+ownerRouter.route('/login')
+  .get((req,res) => {
+    res.sendFile(process.env.PWD + '/client/public/templates/ownerLogin.html')
+  })
+  .post(passport.authenticate('local-owner-login', {
+    successRedirect: '/owner/profile',
+    failureRedirect: '/owner/login'
+  }))
+
+ownerRouter.route('/logout')
+  .get((req,res) => {
+    req.logout()
+    res.redirect('/')
+  })
+
 module.exports = ownerRouter
