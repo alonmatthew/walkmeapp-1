@@ -12,6 +12,7 @@ const NavBar = React.createClass({
       <div>
         <ul>
           <li><a href="/">Home</a></li>
+          <li><a href="/owner/post">Find a Walker</a></li>
           <li><a href="/owner/logout">Logout</a></li>
         </ul>
       </div>

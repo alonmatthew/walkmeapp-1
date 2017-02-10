@@ -46,10 +46,13 @@ ownerRouter.route('/status')
   res.status(200).json({ status: true, user: req.user })
   })
 
-function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()) return next()
-  req.flash('loginMessage', 'You must be logged in to see that.')
-  res.redirect('/login')
-}
+ownerRouter.route('/post')
+  .get((req,res) => {
+    if (!!req.isAuthenticated()) {
+      res.sendFile(process.env.PWD + '/client/public/templates/ownerPost.html')
+    } else {
+      res.redirect('/')
+    }
+  })
 
 module.exports = ownerRouter
