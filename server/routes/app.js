@@ -25,4 +25,9 @@ appRouter.route('/api/walkers')
     })
   })
 
+appRouter.route('/test')
+  .get((req,res) => {
+    res.sendFile(process.env.PWD + '/client/public/templates/testMap.html')
+  })
+
 module.exports = appRouter
