@@ -4,7 +4,8 @@ const
   passportConfig = require('../config/passport.js'),
   ownerRouter = express.Router(),
   Dog = require('../models/Dog.js'),
-  Owner = require('../models/Owner.js')
+  Owner = require('../models/Owner.js'),
+  Post = require('../models/Post.js')
 
 ownerRouter.route('/')
   .get((req,res) => {
@@ -48,11 +49,17 @@ ownerRouter.route('/status')
 
 ownerRouter.route('/post')
   .get((req,res) => {
-    if (!!req.isAuthenticated()) {
+    if (req.isAuthenticated()) {
       res.sendFile(process.env.PWD + '/client/public/templates/ownerPost.html')
     } else {
       res.redirect('/')
     }
+  })
+  .post((req,res) => {
+    Post.create(req.body, (err,post) => {
+      if(err) throw err
+      res.json({message: "Post created!"})
+    })
   })
 
 module.exports = ownerRouter

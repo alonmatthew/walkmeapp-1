@@ -2,7 +2,20 @@ const Dashboard = React.createClass({
   render: function() {
     return (
       <div>
-        <h1>New Post Page</h1>
+        <PostForm />
+      </div>
+    )
+  }
+})
+
+const PostForm = React.createClass({
+  render: function() {
+    return(
+      <div>
+        <form method="POST" action="/owner/post">
+          Post content <input name="content"/>
+          <button type="submit">Submit</button>
+        </form>
       </div>
     )
   }
