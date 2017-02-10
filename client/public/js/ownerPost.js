@@ -13,7 +13,7 @@ const PostForm = React.createClass({
     return(
       <div>
         <form method="POST" action="/owner/post">
-          Post content <input name="content"/>
+          Notes to the walker: <input name="content" />
           <button type="submit">Submit</button>
         </form>
       </div>

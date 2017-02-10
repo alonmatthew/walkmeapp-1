@@ -8,10 +8,10 @@ const
     local: {
       name: String,
       password: String,
-      owner: Boolean
-    },
-    dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
-    post: {type: mongoose.Schema.Types.ObjectId, ref: 'Post'}
+      owner: Boolean,
+      dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
+      posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
+    }
 })
 
 ownerSchema.pre('findOne', function() {
@@ -19,7 +19,7 @@ ownerSchema.pre('findOne', function() {
 })
 
 ownerSchema.pre('findOne', function() {
-  this.populate('post')
+  this.populate('posts')
 })
 
 ownerSchema.methods.generateHash = function(password) {
