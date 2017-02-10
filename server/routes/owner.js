@@ -56,10 +56,18 @@ ownerRouter.route('/post')
     }
   })
   .post((req,res) => {
-    Post.create(req.body, (err,post) => {
-      if(err) throw err
-      res.json({message: "Post created!"})
+    var newPost = new Post(req.body)
+    newPost._owner = req.user
+    newPost.save((err, post) => {
+      req.user.local.posts.push(post)
+      req.user.save()
+      if(err) return console.log(err)
+      res.redirect('/')
     })
+    // Post.create(req.body, (err,post) => {
+    //   if(err) throw err
+    //   res.json({message: "Post created!"})
+    // })
   })
 
 module.exports = ownerRouter
