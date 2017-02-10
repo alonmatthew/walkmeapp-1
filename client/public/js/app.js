@@ -2,16 +2,37 @@ const Dashboard = React.createClass({
 
   getInitialState: function() {
     return {
-      isOwnerLoggedIn: fetch('/owner/status', {credentials: 'same-origin'})
-        .then((data) => { data.json()
-          .then(json => console.log(json) )
-        })
+      userStatus: false
     }
+  },
+
+  componentWillMount: function() {
+
+
+    const statusRoute = '/owner/status'
+    const sendSearch = fetch(statusRoute, {credentials: 'same-origin'})
+
+    // console.log(sendSearch)
+
+    var self = this
+
+    function setUserStatus(data) {
+      data.json().then((jsonData) => {
+        console.log(jsonData)
+        self.setState({
+          userStatus: jsonData.status
+        })
+      })
+    }
+
+
+    sendSearch.then(setUserStatus)
+
   },
 
   render: function() {
     return(
-      <NavBar isLoggedIn={this.state.isOwnerLoggedIn}/>
+      <NavBar userStatus={this.state.userStatus}/>
     )
   }
 })
@@ -21,7 +42,7 @@ const NavBar = React.createClass({
 
   render: function() {
     var navbar;
-    const isLoggedIn = this.props.isOwnerLoggedIn
+    const isLoggedIn = this.props.userStatus
     if(!!isLoggedIn) {
           navbar = <div>
                     <a href="/walker/profile">Profile</a>

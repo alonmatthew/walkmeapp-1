@@ -2,16 +2,24 @@ const
   mongoose = require('mongoose'),
   passport = require('passport'),
   bcrypt = require('bcrypt-nodejs'),
+  Dog = require('./Dog.js'),
+  Post = require('./Post.js'),
   ownerSchema = new mongoose.Schema({
     local: {
       name: String,
-      password: String
+      password: String,
+      owner: Boolean
     },
-    dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}]
+    dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
+    post: {type: mongoose.Schema.Types.ObjectId, ref: 'Post'}
 })
 
 ownerSchema.pre('findOne', function() {
   this.populate('dogs')
+})
+
+ownerSchema.pre('findOne', function() {
+  this.populate('post')
 })
 
 ownerSchema.methods.generateHash = function(password) {

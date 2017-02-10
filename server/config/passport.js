@@ -31,8 +31,7 @@ passport.use('local-owner-signup', new LocalStrategy({
     var newOwner = new Owner()
     newOwner.local.name = name
     newOwner.local.password = newOwner.generateHash(password)
-    // newOwner.local.name = req.body.name
-    // console.log(newOwner)
+    newOwner.local.owner = true
     newOwner.save((err, owner) => {
       if(err) return done(err, false)
       return done(null, owner, null)
@@ -55,8 +54,7 @@ passport.use('local-walker-signup', new LocalStrategy({
     var newWalker = new Walker()
     newWalker.local.name = name
     newWalker.local.password = newWalker.generateHash(password)
-    // newOwner.local.name = req.body.name
-    // console.log(newOwner)
+    newWalker.local.walker = true
     newWalker.save((err, walker) => {
       if(err) return done(err, false)
       return done(null, walker, null)
