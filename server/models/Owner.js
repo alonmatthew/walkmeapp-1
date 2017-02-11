@@ -9,17 +9,17 @@ const
       name: String,
       password: String,
       owner: Boolean,
-      dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
-      posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
-    }
+    },
+    dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
+    posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
 })
+// 
+// ownerSchema.pre('findOne', function() {
+//   this.populate('dogs')
+// })
 
 ownerSchema.pre('findOne', function() {
-  this.populate('dogs')
-})
-
-ownerSchema.pre('findOne', function() {
-  this.populate('posts')
+  this.populate('posts dogs')
 })
 
 ownerSchema.methods.generateHash = function(password) {
