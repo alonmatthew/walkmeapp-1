@@ -23,7 +23,31 @@ ownerRouter.route('/signup')
 
 ownerRouter.route('/profile')
   .get((req,res) => {
-    res.sendFile(process.env.PWD + '/client/public/templates/ownerProfile.html')
+    if(req.isAuthenticated()) {
+      res.sendFile(process.env.PWD + '/client/public/templates/ownerProfile.html')
+    } else {
+        res.redirect('/')
+    }
+  })
+
+
+ownerRouter.route('/pets')
+  .get((req,res) => {
+    if(req.isAuthenticated()) {
+      res.sendFile(process.env.PWD + '/client/public/templates/registerDog.html')
+    } else {
+        res.redirect('/')
+    }
+  })
+  .post((req,res) => {
+    var newDog = new Dog(req.body)
+    newDog._owner = req.user
+    newDog.save((err, dog) => {
+      req.user.dogs.push(dog)
+      req.user.save()
+      if(err) return console.log(err)
+      res.redirect('/owner/profile')
+    })
   })
 
 ownerRouter.route('/login')
@@ -59,15 +83,11 @@ ownerRouter.route('/post')
     var newPost = new Post(req.body)
     newPost._owner = req.user
     newPost.save((err, post) => {
-      req.user.local.posts.push(post)
+      req.user.posts.push(post)
       req.user.save()
       if(err) return console.log(err)
       res.redirect('/')
     })
-    // Post.create(req.body, (err,post) => {
-    //   if(err) throw err
-    //   res.json({message: "Post created!"})
-    // })
   })
 
 module.exports = ownerRouter

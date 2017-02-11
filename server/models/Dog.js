@@ -2,6 +2,8 @@ const
   mongoose = require('mongoose'),
   dogSchema = mongoose.Schema({
     name: String,
+    breed: String,
+    age: Number,
     _owner: {type: mongoose.Schema.Types.ObjectId, ref: 'Owner'},
     _walker: {type: mongoose.Schema.Types.ObjectId, ref: 'Walker'}
   })

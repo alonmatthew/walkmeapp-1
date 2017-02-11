@@ -19,7 +19,7 @@ const
 
 // mongodb connection
 mongoose.connect(mongooseConnectionString, (err) => {
-  console.log(err || "Connected to MongoDB(walkme-app)")
+  console.log(err || "Connected to MongoDB at " + mongooseConnectionString)
 })
 
 // middleware
