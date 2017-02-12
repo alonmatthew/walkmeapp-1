@@ -28,8 +28,10 @@ const Dashboard = React.createClass({
 
   render: function() {
     return(
-      <NavBar />,
-      <Posts posts={this.state.posts} />
+      <div>
+        <NavBar />,
+        <Posts posts={this.state.posts} />
+      </div>
     )
   }
 })

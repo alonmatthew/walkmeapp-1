@@ -70,7 +70,7 @@ const Info = React.createClass({
     return(
       <div>
         <a href="/owner/post">Request a Walk</a><br/>
-        <h1>{user.name}s Info</h1><br />
+        <h1>{user.name}s Dashboard</h1><br />
         <h3>{user.name}</h3><br />
         <h1>Your Pets</h1>
         <ul>{dogs}</ul>
