@@ -8,10 +8,88 @@
   <script src="/vendor/babel-core-5.8.25.js"></script>
   <script src="/vendor/react.js"></script>
   <script src="/vendor/react-dom.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <title>Document</title>
+  <style media="screen">
+    .navbar{
+      margin-bottom: 0;
+      border: 0;
+    }
+
+    .jumbotron{
+      background: #e7e7e7;
+    }
+  </style>
+
 </head>
 <body>
   <div id="root"></div>
   <script type="text/babel" src="/js/GoogleApiComponent.js"></script>
+  <script type="text/babel">
+    const NavBar = React.createClass({
+      render: function(){
+        return(
+          <nav className="navbar navbar-default">
+            <div className="container">
+              <div className="navbar-header">
+                <a className="navbar-brand" href="#">Walk Me</a>
+              </div>
+              <div id="navbar">
+                <ul className="nav navbar-nav">
+                  <li><a href="#"className="active">Home</a></li>
+                  <li><a href="#">Profile</a></li>
+                  <li><a href="#">Contact</a></li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+        )
+      }
+    })
+
+    const Jumbotron = React.createClass({
+      render: function(){
+        return(
+        <div className="jumbotron">
+          <div className="container">
+            <h1>Find a Walker Now.</h1>
+            <p>Find a walker on-demand.</p>
+          </div>
+        </div>
+        )
+      }
+    })
+
+    const Page = React.createClass({
+      render: function(){
+        return(
+          <div className="container">
+            <h1>This is the tester page.</h1>
+          </div>
+        )
+      }
+    })
+
+    const Theme = React.createClass({
+      render: function(){
+        return(
+          <div>
+            <NavBar />
+            <Jumbotron />
+            <Page />
+          </div>
+        )
+      }
+    })
+
+    ReactDOM.render(
+      <div>
+      <Theme />C
+      </div>,
+      document.getElementById('root')
+    )
+  </script>
+
+
 </body>
 </html>
