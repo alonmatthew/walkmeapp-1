@@ -189,5 +189,5 @@ componentDidMount: function() {
 
 ReactDOM.render(
   <Map />,
-  document.getElementById('root')
+  document.getElementById('map')
 )

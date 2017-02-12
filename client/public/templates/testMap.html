@@ -24,6 +24,7 @@
 </head>
 <body>
   <div id="root"></div>
+  <div id="map"></div>
   <script type="text/babel" src="/js/GoogleApiComponent.js"></script>
   <script type="text/babel">
     const NavBar = React.createClass({
@@ -50,7 +51,7 @@
     const Jumbotron = React.createClass({
       render: function(){
         return(
-        <div className="jumbotron">
+        <div className="jumbotron" id="map">
           <div className="container">
             <h1>Find a Walker Now.</h1>
             <p>Find a walker on-demand.</p>
@@ -84,7 +85,7 @@
 
     ReactDOM.render(
       <div>
-      <Theme />C
+      <Theme />
       </div>,
       document.getElementById('root')
     )
