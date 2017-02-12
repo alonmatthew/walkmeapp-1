@@ -44,16 +44,16 @@ const NavBar = React.createClass({
     var navbar;
     const isLoggedIn = this.props.userStatus
     if(!!isLoggedIn) {
-          navbar = <div>
-                    <a href="/walker/profile">Profile</a>
-                    <a href="/owner/profile">Profile</a>
+          navbar = <div className="btn btn-group">
+                    <button><a href="/walker/profile">Profile</a></button>
+                    <button><a href="/owner/profile">Profile</a></button>
                   </div>
     } else {
-          navbar = <div>
+          navbar = <div className="btn btn-group">
+                    <button><a href="/walker/login">Login as walker</a></button>
+                    <button><a href="/owner/login">Login as owner</a></button>
                     <a href="/owner/signup">Sign up as owner</a>
                     <a href="/walker/signup">Sign up as walker</a><br />
-                    <a href="/walker/login">Login as walker</a>
-                    <a href="/owner/login">Login as owner</a>
                   </div>
       }
 
@@ -67,5 +67,5 @@ const NavBar = React.createClass({
 
 ReactDOM.render(
   <Dashboard />,
-  document.getElementById('root')
+  document.getElementById('connect')
 )
