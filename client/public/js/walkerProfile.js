@@ -2,7 +2,9 @@ const Dashboard = React.createClass({
   getInitialState: function() {
     return{
       user: {
-        name: ''
+        local: {
+          name: ''
+        }
       },
       posts: []
     }
@@ -12,9 +14,16 @@ const Dashboard = React.createClass({
 
     const statusRoute = '/walker/status'
     const postRoute = '/api/posts'
-    const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
+    // const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
     const sendStatusSearch = fetch(statusRoute, {credentials: 'same-origin'})
-    
+
+    // fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
+    //   data.json().then((jsonData) => {
+    //     console.log(jsonData)
+    //
+    //   })
+    // })
+
     var self = this
 
     function setPosts(data) {
@@ -28,7 +37,7 @@ const Dashboard = React.createClass({
 
     function setUser(data) {
       data.json().then((jsonData) => {
-        // console.log(jsonData)
+        console.log(jsonData)
         self.setState({
           user: jsonData.user
         })
@@ -36,7 +45,7 @@ const Dashboard = React.createClass({
     }
 
     sendStatusSearch.then(setUser)
-    sendSearch.then(setPosts)
+    // sendSearch.then(setPosts)
 
   },
 

@@ -1,19 +1,19 @@
 const Dashboard = React.createClass({
   getInitialState: function() {
     return {
-        post: {
-          owner: {
-            local: {
-              name: '',
-              address: ''
-            }
-          },
-          dog: '',
-          age: '',
-          breed: '',
-          date: '',
-          notes: ''
-        }
+      post: {
+        owner: {
+          local: {
+            name: '',
+            address: ''
+          }
+        },
+        dog: '',
+        age: '',
+        breed: '',
+        date: '',
+        notes: ''
+      }
       }
     }
   },

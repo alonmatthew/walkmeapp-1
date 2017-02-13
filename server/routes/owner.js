@@ -67,6 +67,8 @@ ownerRouter.route('/logout')
 
 ownerRouter.route('/status')
   .get((req, res) => {
+    console.log("Current owner:")
+    console.log(req.user)
   if (!req.isAuthenticated()) return res.status(200).json({ status: false })
   res.status(200).json({ status: true, user: req.user })
   })

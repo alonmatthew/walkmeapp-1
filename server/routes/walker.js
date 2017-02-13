@@ -42,6 +42,7 @@ walkerRouter.route('/logout')
 
 walkerRouter.route('/status')
   .get((req, res) => {
+    console.log("Trying to retrieve current user:")
     console.log(req.user)
     if (!req.isAuthenticated()) return res.status(200).json({ status: false })
     res.status(200).json({ status: true, user: req.user })

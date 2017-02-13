@@ -9,15 +9,15 @@ passport.serializeUser((user, done) => {
   done(null, user.id)
 })
 
-passport.deserializeUser((id, done) => {
-  Owner.findById(id, (err, owner) =>{
-    done(err, owner)
-  })
-})
+
 
 passport.deserializeUser((id, done) => {
-  Walker.findById(id, (err, walker) =>{
-    done(err, walker)
+  Owner.findById(id, function(err, owner) {
+    if(owner) return done(err, owner)
+    Walker.findById(id, function(err, walker) {
+      if(walker) { return done(err, walker) }
+      else { return done(false)}
+    })
   })
 })
 
