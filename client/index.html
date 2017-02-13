@@ -30,34 +30,13 @@
   <script type="text/babel" src="/js/app.js"></script>
   <script type="text/babel" src="/js/GoogleApiComponent.js"></script>
   <script type="text/babel">
-    const NavBar = React.createClass({
-      render: function(){
-        return(
-          <nav className="navbar navbar-default">
-            <div className="container">
-              <div className="navbar-header">
-                <a className="navbar-brand" href="#">Walk Me</a>
-              </div>
-              <div id="navbar">
-                <ul className="nav navbar-nav">
-                  <li><a href="#" className="active">Home</a></li>
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </div>
-            </div>
-          </nav>
-        )
-      }
-    })
-
     const Jumbotron = React.createClass({
       render: function(){
         return(
         <div className="jumbotron" id="map">
           <div className="container">
-            <h1>Find a Walker Now.</h1>
-            <p>Find a walker on-demand.</p>
+            <h1 className="text-center">Find a Walker Now.</h1>
+            <p className="text-center">Find a walker on-demand.</p>
           </div>
         </div>
         )
@@ -68,7 +47,7 @@
       render: function(){
         return(
           <div className="container">
-            <h1>This is the tester page.</h1>
+            <h1 className="text-center">Learn More.</h1>
           </div>
         )
       }
@@ -78,7 +57,6 @@
       render: function(){
         return(
           <div>
-            <NavBar />
             <Jumbotron />
             <Page />
           </div>

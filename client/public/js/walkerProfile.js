@@ -1,5 +1,4 @@
 const Dashboard = React.createClass({
-
   getInitialState: function() {
     return{
       posts: []
@@ -8,6 +7,7 @@ const Dashboard = React.createClass({
 
   componentWillMount: function() {
 
+    const statusRoute = '/walker/status'
     const postRoute = '/api/posts'
     const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
 
@@ -59,6 +59,7 @@ const Posts = React.createClass({
     )
   }
 })
+
 
 ReactDOM.render(
   <Dashboard />,
