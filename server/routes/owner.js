@@ -81,7 +81,9 @@ ownerRouter.route('/post')
   })
   .post((req,res) => {
     var newPost = new Post(req.body)
-    newPost._owner = req.user
+    console.log(req)
+    newPost.dog = req.body.dog
+    newPost.owner = req.user
     newPost.save((err, post) => {
       req.user.posts.push(post)
       req.user.save()

@@ -8,12 +8,13 @@ const
     local: {
       name: String,
       password: String,
-      owner: Boolean,
+      address: String,
+      owner: Boolean
     },
     dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
     posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
 })
-// 
+//
 // ownerSchema.pre('findOne', function() {
 //   this.populate('dogs')
 // })

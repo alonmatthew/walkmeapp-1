@@ -36,6 +36,7 @@ passport.use('local-owner-signup', new LocalStrategy({
     }
     var newOwner = new Owner()
     newOwner.local.name = name
+    newOwner.local.address = req.body.address
     newOwner.local.password = newOwner.generateHash(password)
     newOwner.local.owner = true
     newOwner.save((err, owner) => {
@@ -59,6 +60,7 @@ passport.use('local-walker-signup', new LocalStrategy({
     }
     var newWalker = new Walker()
     newWalker.local.name = name
+    newWalker.local.address = req.body.address
     newWalker.local.password = newWalker.generateHash(password)
     newWalker.local.walker = true
     newWalker.save((err, walker) => {
@@ -73,6 +75,7 @@ passport.use('local-walker-login', new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true
 }, (req, name, password, done) => {
+  console.log(req.body)
   Walker.findOne({'local.name': name}, (err, walker) => {
     if(err) return done(err)
     if(!walker) return done(null, false, req.flash('loginMessage', 'No user found...'))
@@ -86,6 +89,7 @@ passport.use('local-owner-login', new LocalStrategy({
   passwordField: 'password',
   passReqToCallback: true
 }, (req, name, password, done) => {
+  console.log(req)
   Owner.findOne({'local.name': name}, (err, owner) => {
     if(err) return done(err)
     if(!owner) return done(null, false, req.flash('loginMessage', 'No user found...'))
