@@ -19,30 +19,57 @@
     .jumbotron{
       background: #e7e7e7;
     }
+
+    .right {
+      float: right !important;
+    }
+
+    @media (min-width: 979px) {
+
+    #midCol.affix-top {
+        position:fixed;
+    	  width:265px;
+    	  margin-right:10px;
+
+    }
+
+    #midCol.affix {
+        position:static;
+        width:100%;
+    }
+
+  }
+
+  @media (min-width: 767px) {
+    .affix,.affix-top {
+        position:fixed;
+    }
+  }
+
   </style>
 
 </head>
 <body>
-  <div id="root"></div>
-  <div id="map"></div>
+  <div class="container">
+  <div class="row">
+    <div id="root"></div>
+    <div id="page" class="col-sm-10 col-sm-offset-2 right"></div>
+    <div id="map" class="col-sm-10 right"></div>
+  </div>
+  </div>
   <script type="text/babel" src="/js/GoogleApiComponent.js"></script>
   <script type="text/babel">
     const NavBar = React.createClass({
       render: function(){
         return(
-          <nav className="navbar navbar-default">
-            <div className="container">
-              <div className="navbar-header">
-                <a className="navbar-brand" href="#">Walk Me</a>
-              </div>
-              <div id="navbar">
-                <ul className="nav navbar-nav">
-                  <li><a href="#"className="active">Home</a></li>
-                  <li><a href="#">Profile</a></li>
-                  <li><a href="#">Contact</a></li>
-                </ul>
-              </div>
-            </div>
+          <nav className="col-sm-2">
+          <ul id="sidebar" className="nav nav-stacked affix">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Schedule</a></li>
+            <li><a href="#">Payments</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
           </nav>
         )
       }
@@ -51,7 +78,7 @@
     const Jumbotron = React.createClass({
       render: function(){
         return(
-        <div className="jumbotron" id="map">
+        <div className="jumbotron col-sm-10">
           <div className="container">
             <h1>Find a Walker Now.</h1>
             <p>Find a walker on-demand.</p>
@@ -64,10 +91,11 @@
     const Page = React.createClass({
       render: function(){
         return(
-          <div className="container">
+          <div>
+            <div className="container">
             <h1>This is the tester page.</h1>
-          </div>
-        )
+            </div>
+          </div>        )
       }
     })
 
@@ -77,7 +105,6 @@
           <div>
             <NavBar />
             <Jumbotron />
-            <Page />
           </div>
         )
       }
@@ -88,6 +115,13 @@
       <Theme />
       </div>,
       document.getElementById('root')
+    )
+
+    ReactDOM.render(
+      <div>
+      <Page />
+      </div>,
+      document.getElementById('page')
     )
   </script>
 
