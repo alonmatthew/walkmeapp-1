@@ -14,15 +14,15 @@ const Dashboard = React.createClass({
 
     const statusRoute = '/walker/status'
     const postRoute = '/api/posts'
-    // const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
+    const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
     const sendStatusSearch = fetch(statusRoute, {credentials: 'same-origin'})
 
-    // fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
-    //   data.json().then((jsonData) => {
-    //     console.log(jsonData)
-    //
-    //   })
-    // })
+    fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
+      data.json().then((jsonData) => {
+        console.log(jsonData)
+
+      })
+    })
 
     var self = this
 
@@ -45,7 +45,7 @@ const Dashboard = React.createClass({
     }
 
     sendStatusSearch.then(setUser)
-    // sendSearch.then(setPosts)
+    sendSearch.then(setPosts)
 
   },
 
@@ -77,8 +77,9 @@ const NavBar = React.createClass({
 const Posts = React.createClass({
   render: function() {
     var posts = this.props.posts.map((p) => {
+      console.log(p._id)
       return(
-        <li key={p._id}>{p.content}</li>
+        <li key={p._id}><a href={'/walker/post/' + p._id}>{p.content}</a></li>
       )
     })
     return(
