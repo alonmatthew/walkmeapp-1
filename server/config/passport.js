@@ -5,13 +5,19 @@ const
   Owner = require('../models/Owner.js'),
   Walker = require('../models/Walker.js')
 
-passport.serializeUser((owner, done) => {
-  done(null, owner.id)
+passport.serializeUser((user, done) => {
+  done(null, user.id)
 })
 
 passport.deserializeUser((id, done) => {
   Owner.findById(id, (err, owner) =>{
     done(err, owner)
+  })
+})
+
+passport.deserializeUser((id, done) => {
+  Walker.findById(id, (err, walker) =>{
+    done(err, walker)
   })
 })
 

@@ -25,7 +25,6 @@ const Dashboard = React.createClass({
       })
     }
 
-
     sendSearch.then(setUserStatus)
 
   },

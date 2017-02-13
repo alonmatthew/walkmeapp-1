@@ -1,6 +1,9 @@
 const Dashboard = React.createClass({
   getInitialState: function() {
     return{
+      user: {
+        name: ''
+      },
       posts: []
     }
   },
@@ -10,12 +13,13 @@ const Dashboard = React.createClass({
     const statusRoute = '/walker/status'
     const postRoute = '/api/posts'
     const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
-
+    const sendStatusSearch = fetch(statusRoute, {credentials: 'same-origin'})
+    
     var self = this
 
     function setPosts(data) {
       data.json().then((jsonData) => {
-        console.log(jsonData)
+        // console.log(jsonData)
         self.setState({
           posts: jsonData.posts
         })
@@ -24,22 +28,24 @@ const Dashboard = React.createClass({
 
     function setUser(data) {
       data.json().then((jsonData) => {
-        console.log(jsonData)
+        // console.log(jsonData)
         self.setState({
           user: jsonData.user
         })
       })
     }
 
+    sendStatusSearch.then(setUser)
     sendSearch.then(setPosts)
-    sendSearch.then(setUser)
 
   },
 
   render: function() {
+    console.log(this.state.user)
     return(
       <div>
         <NavBar />
+        <Info user={this.state.user} />
         <Posts posts={this.state.posts} />
       </div>
     )
@@ -71,6 +77,20 @@ const Posts = React.createClass({
     )
   }
 })
+
+const Info = React.createClass({
+  render: function() {
+    // console.log(this.props)
+    const user = this.props.user.local
+    return(
+      <div>
+        <h1>{user.name}s Info</h1><br />
+        <h3>{user.name}</h3><br />
+      </div>
+    )
+  }
+})
+
 
 
 ReactDOM.render(
