@@ -22,14 +22,26 @@ const Dashboard = React.createClass({
       })
     }
 
+    function setUser(data) {
+      data.json().then((jsonData) => {
+        console.log(jsonData)
+        self.setState({
+          user: jsonData.user
+        })
+      })
+    }
+
     sendSearch.then(setPosts)
+    sendSearch.then(setUser)
 
   },
 
   render: function() {
     return(
-      <NavBar />,
-      <Posts posts={this.state.posts} />
+      <div>
+        <NavBar />
+        <Posts posts={this.state.posts} />
+      </div>
     )
   }
 })
