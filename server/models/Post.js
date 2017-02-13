@@ -5,8 +5,8 @@ const
   postSchema = mongoose.Schema({
     content: String,
     date: Date,
-    dog: {type: mongoose.Schema.Types.ObjectId, ref: 'Dog'},
-    owner: {type: mongoose.Schema.Types.ObjectId, ref: 'Owner'}
+    owner: {type: mongoose.Schema.Types.ObjectId, ref: 'Owner'},
+    dog: {type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}
   }, {
     timestamps: true
   })

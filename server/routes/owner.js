@@ -67,8 +67,8 @@ ownerRouter.route('/logout')
 
 ownerRouter.route('/status')
   .get((req, res) => {
-    console.log("Current owner:")
-    console.log(req.user)
+    // console.log("Current owner:")
+    // console.log(req.user)
   if (!req.isAuthenticated()) return res.status(200).json({ status: false })
   res.status(200).json({ status: true, user: req.user })
   })
@@ -83,8 +83,8 @@ ownerRouter.route('/post')
   })
   .post((req,res) => {
     var newPost = new Post(req.body)
-    console.log(req)
-    newPost.dog = req.body.dog
+    console.log(req.body)
+    // newPost.dog = req.body.dog
     newPost.owner = req.user
     newPost.save((err, post) => {
       req.user.posts.push(post)
