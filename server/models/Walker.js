@@ -8,6 +8,7 @@ const
     local: {
       name: String,
       password: String,
+      address: String,
       walker: Boolean
     },
     dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
