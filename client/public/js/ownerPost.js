@@ -43,18 +43,27 @@ const Dashboard = React.createClass({
 })
 
 const PostForm = React.createClass({
+  componentDidMount: function() {
+    return(
+      $(function() {
+        $( "#datepicker" ).datepicker();
+      })
+    )
+  },
+
   render: function() {
     const dogs = this.props.user.dogs.map((d) => {
       return(
-        <option key={d._id} value="{d.name}">{d.name}</option>
+        <option key={d._id} value={d._id}>{d.name}</option>
       )
     })
 
     return(
       <div>
         <form method="POST" action="/owner/post">
+          Date: <input type="text" id="datepicker" name="date"></input>
+          <select name="dog">{dogs}</select>
           Notes to the walker: <input name="content" />
-          <select>{dogs}</select>
           <button type="submit">Submit</button>
         </form>
       </div>
