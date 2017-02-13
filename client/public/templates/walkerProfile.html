@@ -1,126 +1,130 @@
-<!doctype html>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <title>Walk Me</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <script src="/vendor/babel-core-5.8.25.js"></script>
-    <script src="/vendor/react.js"></script>
-    <script src="/vendor/react-dom.js"></script>
-    <script src="http://cdn.pubnub.com/pubnub-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript"  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxHz4nxwO8le4A_cvbpwSV9TeO8GCw2lE"></script>
+  <script src="/vendor/babel-core-5.8.25.js"></script>
+  <script src="/vendor/react.js"></script>
+  <script src="/vendor/react-dom.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <title>Walk Me - On-Demand Dog Walking</title>
+  <style media="screen">
+    .navbar{
+      margin-bottom: 0;
+      border: 0;
+    }
 
-    <style>
-      html, body, #map-canvas {
-        height: 400px;
-        margin: 0px;
-        padding: 0px
+    .jumbotron{
+      background: #e7e7e7;
+    }
+
+    .right {
+      float: right !important;
+    }
+
+    @media (min-width: 979px) {
+
+    #midCol.affix-top {
+        position:fixed;
+    	  width:265px;
+    	  margin-right:10px;
+
+    }
+
+    #midCol.affix {
+        position:static;
+        width:100%;
+    }
+
+  }
+
+  @media (min-width: 767px) {
+    .affix,.affix-top {
+        position:fixed;
+    }
+  }
+
+  </style>
+
+</head>
+<body>
+  <div class="container">
+  <div class="row">
+    <div id="main"></div>
+    <div id="root" class="col-sm-10 right"></div>
+    <div id="map" class="col-sm-10 right"></div>
+  </div>
+  </div>
+  <script type="text/babel" src="/js/walkerProfile.js"></script>
+  <script type="text/babel" src="/js/GoogleApiComponent.js"></script>
+  <script type="text/babel">
+    const NavBar = React.createClass({
+      render: function(){
+        return(
+          <nav className="col-sm-2">
+          <ul id="sidebar" className="nav nav-stacked affix">
+            <li><a href="/">Home</a></li>
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Schedule</a></li>
+            <li><a href="#">Payments</a></li>
+            <li><a href="/walker/logout">Logout</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+          </nav>
+        )
       }
-    </style>
+    })
 
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
-
-  </head>
-  <body>
-    <div id="root"></div>
-    <div class="container"><h1>Walker Profile</h1></div>
-    <div id="map-canvas"></div>
-
-    <!-- Map Configuration and data -->
-    <script type="text/babel" src="/js/walkerProfile.js"></script>
-    <script>
-
-
-    var map;
-    var map_marker;
-    var lat = null;
-    var lng = null;
-    var lineCoordinatesArray = [];
-
-    // sets your location as default
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(function(position) {
-        var locationMarker = null;
-        if (locationMarker){
-          // return if there is a locationMarker bug
-          return;
-        }
-
-        lat = position.coords["latitude"];
-        lng = position.coords["longitude"];
-
-        // calls PubNub
-        pubs();
-
-        // initialize google maps
-        google.maps.event.addDomListener(window, 'load', initialize());
-      },
-      function(error) {
-        console.log("Error: ", error);
-      },
-      {
-        enableHighAccuracy: true
+    const Jumbotron = React.createClass({
+      render: function(){
+        return(
+        <div className="jumbotron col-sm-10">
+          <div className="container">
+            <h1>Find a Walker Now.</h1>
+            <p>Find a walker on-demand.</p>
+          </div>
+        </div>
+        )
       }
-      );
-    }
+    })
 
+    const Page = React.createClass({
+      render: function(){
+        return(
+          <div>
+            <div className="container">
+            <h1>This is the tester page.</h1>
+            </div>
+          </div>        )
+      }
+    })
 
-    function initialize() {
-      console.log("Google Maps Initialized")
-      map = new google.maps.Map(document.getElementById('map-canvas'), {
-        zoom: 15,
-        center: {lat: lat, lng : lng, alt: 0}
-      });
+    const Theme = React.createClass({
+      render: function(){
+        return(
+          <div>
+            <NavBar />
+            <Jumbotron />
+          </div>
+        )
+      }
+    })
 
-      map_marker = new google.maps.Marker({position: {lat: lat, lng: lng}, map: map});
-      map_marker.setMap(map);
-    }
+    ReactDOM.render(
+      <div>
+      <Theme />
+      </div>,
+      document.getElementById('main')
+    )
 
-    // moves the marker and center of map
-    function redraw() {
-      map.setCenter({lat: lat, lng : lng, alt: 0})
-      map_marker.setPosition({lat: lat, lng : lng, alt: 0});
-      pushCoordToArray(lat, lng);
-
-      var lineCoordinatesPath = new google.maps.Polyline({
-        path: lineCoordinatesArray,
-        geodesic: true,
-        strokeColor: '#2E10FF',
-        strokeOpacity: 1.0,
-        strokeWeight: 2
-      });
-
-      lineCoordinatesPath.setMap(map);
-    }
-
-
-    function pushCoordToArray(latIn, lngIn) {
-      lineCoordinatesArray.push(new google.maps.LatLng(latIn, lngIn));
-    }
-
-
-    function pubs() {
-      pubnub = PUBNUB.init({
-        publish_key: 'pub-c-3a56cc93-eb87-425e-b7f5-d24a96c06c7ds',
-        subscribe_key: 'sub-c-9f14d376-ee2b-11e6-8bf6-02ee2ddab7fe'
-      })
-
-      pubnub.subscribe({
-        channel: "mymaps",
-        message: function(message, channel) {
-          console.log(message)
-          lat = message['lat'];
-          lng = message['lng'];
-          //custom method
-          redraw();
-        },
-        connect: function() {console.log("PubNub Connected")}
-      })
-    }
-
-    </script>
-
-    <br>
-  </body>
+    ReactDOM.render(
+      <div>
+      <Page />
+      </div>,
+      document.getElementById('page')
+    )
+  </script>
+</body>
 </html>
