@@ -85,6 +85,8 @@ ownerRouter.route('/post')
     console.log(req.body)
     // newPost.dog = req.body.dog
     newPost.owner = req.user
+    newPost.accepted = false
+    newPost.requested = false
     newPost.save((err, post) => {
       req.user.posts.push(post)
       req.user.save()

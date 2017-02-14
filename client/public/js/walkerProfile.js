@@ -21,12 +21,12 @@ const Dashboard = React.createClass({
     const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
     const sendStatusSearch = fetch(statusRoute, {credentials: 'same-origin'})
 
-    fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
-      data.json().then((jsonData) => {
-        console.log(jsonData)
-
-      })
-    })
+    // fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
+    //   data.json().then((jsonData) => {
+    //     console.log(jsonData)
+    //
+    //   })
+    // })
 
     var self = this
 
@@ -91,7 +91,7 @@ const PostList = React.createClass({
       console.log('this is line 90');
       console.log(p._id)
       return(
-        fetch('/walker/post/' + p._id}, {
+        fetch('/walker/post/' + p._id, {
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -108,7 +108,9 @@ const PostList = React.createClass({
 
   render: function() {
     var posts = this.props.posts.map((p) => {
-      console.log(p._id)
+      console.log("post at line 111:")
+      console.log(p)
+      // console.log(p._id)
       return(
         <li key={p._id}>
         <a href={'/walker/post/' + p._id}>{p.content} {p.date}</a>
