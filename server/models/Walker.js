@@ -3,6 +3,7 @@ const
   passport = require('passport'),
   bcrypt = require('bcrypt-nodejs'),
   Dog = require('./Dog.js'),
+  Owner = require('./Owner.js'),
   Post = require('./Post.js'),
   walkerSchema = new mongoose.Schema({
     local: {
@@ -16,11 +17,20 @@ const
   })
 
 walkerSchema.pre('findOne', function() {
-  this.populate('dogs')
-})
-
-walkerSchema.pre('findOne', function() {
-  this.populate('posts')
+  this.populate([
+    {path: 'posts', model: 'Post',
+      populate: {
+        path: 'dog',
+        model: 'Dog'
+      }
+    },
+    {path: 'posts', model: 'Post',
+      populate: {
+        path: 'owner',
+        model: 'Owner'
+      }
+    }
+  ])
 })
 
 walkerSchema.methods.generateHash = function(password) {
