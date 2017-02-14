@@ -10,6 +10,10 @@ const Dashboard = React.createClass({
     }
   },
 
+  // showInfo: function() {
+  //
+  // },
+
   componentWillMount: function() {
 
     const statusRoute = '/walker/status'
@@ -22,6 +26,9 @@ const Dashboard = React.createClass({
 
     function setPosts(data) {
       data.json().then((jsonData) => {
+
+        console.log(jsonData.posts
+        console.log(jsonData)
         self.setState({
           posts: jsonData.posts
         })
@@ -47,7 +54,7 @@ const Dashboard = React.createClass({
       <div>
         <NavBar />
         <Info user={this.state.user} />
-        <Posts posts={this.state.posts} />
+        <PostList posts={this.state.posts} />
       </div>
     )
   }
@@ -66,11 +73,39 @@ const NavBar = React.createClass({
   }
 })
 
-const Posts = React.createClass({
+const PostList = React.createClass({
+  // showPost: function(evt){
+  //   evt.preventDefault
+  //   this.props.showInfo
+  // },
+
+  handleClick: function(p) {
+    console.log("request button clicked");
+    const posts = this.props.posts.map((p) => {
+      console.log('this is line 90');
+      console.log(p._id)
+      return(
+        fetch('/walker/post/' + p._id, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method:'PATCH',
+          body: JSON.stringify( { requested: true } )
+        }).then((res) => res.json()
+            .then((jsonData) => {
+              console.log(jsonData.requested)
+            }))
+      )
+  })
+},
+
   render: function() {
     var posts = this.props.posts.map((p) => {
       return(
         <li key={p._id}>
+        <a href={'/walker/post/' + p._id}>{p.content} {p.date}</a>
+        <button onClick={this.handleClick}>Request</button>
           <a href={'/walker/post/' + p._id}>
             {p.dog.name}<br/>
             {p.dog.breed}<br/>
@@ -87,6 +122,8 @@ const Posts = React.createClass({
     )
   }
 })
+
+
 
 const Info = React.createClass({
   render: function() {
