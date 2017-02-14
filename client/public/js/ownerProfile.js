@@ -60,7 +60,7 @@ const NavBar = React.createClass({
 
 const Info = React.createClass({
   render: function() {
-    console.log(this.props)
+    // console.log(this.props.user)
     const user = this.props.user.local
     const dogs = this.props.user.dogs.map((d) => {
       return(

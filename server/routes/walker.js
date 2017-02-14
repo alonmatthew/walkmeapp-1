@@ -4,6 +4,7 @@ const
   passportConfig = require('../config/passport.js'),
   walkerRouter = express.Router(),
   Dog = require('../models/Dog.js'),
+  Post = require('../models/Post.js'),
   Walker = require('../models/Walker.js')
 
 walkerRouter.route('/')
@@ -51,7 +52,11 @@ walkerRouter.route('/status')
 walkerRouter.route('/post/:id')
   .get((req, res) => {
     if (req.isAuthenticated()) {
-      res.sendFile(process.env.PWD + '/client/public/templates/walkerPost.html')
+      Post.findById(req.params.id, (err,post) => {
+        console.log(post)
+        res.sendFile(process.env.PWD + '/client/public/templates/walkerPost.html', {post: post})
+      })
+
     } else {
       res.redirect('/')
     }
