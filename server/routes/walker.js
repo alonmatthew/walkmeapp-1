@@ -65,4 +65,9 @@ walkerRouter.route('/post/:id')
     console.log(req)
   })
 
+walkerRouter.route('/walks')
+  .get((req,res) => {
+    res.sendFile(process.env.PWD + '/client/public/templates/walkerWalks.html')
+  })
+
 module.exports = walkerRouter

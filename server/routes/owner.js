@@ -101,4 +101,9 @@ ownerRouter.route('/post')
     })
   })
 
+ownerRouter.route('/walks')
+  .get((req,res) => {
+    res.sendFile(process.env.PWD + '/client/public/templates/ownerWalks.html')
+  })
+
 module.exports = ownerRouter
