@@ -21,21 +21,14 @@ const Dashboard = React.createClass({
     const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
     const sendStatusSearch = fetch(statusRoute, {credentials: 'same-origin'})
 
-    // fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
-    //   data.json().then((jsonData) => {
-    //
-    //   })
-    // })
 
     var self = this
 
     function setPosts(data) {
       data.json().then((jsonData) => {
-<<<<<<< HEAD
-        console.log(jsonData.posts)
-=======
+
+        console.log(jsonData.posts
         console.log(jsonData)
->>>>>>> 39f484a8f4cf4b44076d18d6962920df1465bbbb
         self.setState({
           posts: jsonData.posts
         })
@@ -114,12 +107,12 @@ const PostList = React.createClass({
         <a href={'/walker/post/' + p._id}>{p.content} {p.date}</a>
         <button onClick={this.handleClick}>Request</button>
           <a href={'/walker/post/' + p._id}>
-            {p.dog.name}
-            {p.dog.breed}
-            {p.dog.age}
-            {p.owner.local.name}
-            {p.date}
-            {p.content}
+            {p.dog.name}<br/>
+            {p.dog.breed}<br/>
+            {p.dog.age}<br/>
+            {p.owner.local.name}<br/>
+            {p.date}<br/>
+            {p.content}<br/>
           </a>
         </li>
       )
@@ -134,7 +127,6 @@ const PostList = React.createClass({
 
 const Info = React.createClass({
   render: function() {
-    // console.log(this.props)
     const user = this.props.user.local
     return(
       <div>

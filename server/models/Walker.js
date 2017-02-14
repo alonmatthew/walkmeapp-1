@@ -10,6 +10,7 @@ const
       name: String,
       password: String,
       address: String,
+      messages: [],
       walker: Boolean
     },
     dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
