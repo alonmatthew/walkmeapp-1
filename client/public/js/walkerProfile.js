@@ -21,18 +21,21 @@ const Dashboard = React.createClass({
     const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
     const sendStatusSearch = fetch(statusRoute, {credentials: 'same-origin'})
 
-    fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
-      data.json().then((jsonData) => {
-        console.log(jsonData)
-
-      })
-    })
+    // fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
+    //   data.json().then((jsonData) => {
+    //
+    //   })
+    // })
 
     var self = this
 
     function setPosts(data) {
       data.json().then((jsonData) => {
+<<<<<<< HEAD
         console.log(jsonData.posts)
+=======
+        console.log(jsonData)
+>>>>>>> 39f484a8f4cf4b44076d18d6962920df1465bbbb
         self.setState({
           posts: jsonData.posts
         })
@@ -41,7 +44,7 @@ const Dashboard = React.createClass({
 
     function setUser(data) {
       data.json().then((jsonData) => {
-        console.log(jsonData)
+        // console.log(jsonData)
         self.setState({
           user: jsonData.user
         })
@@ -54,7 +57,6 @@ const Dashboard = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.user)
     return(
       <div>
         <NavBar />
@@ -107,11 +109,18 @@ const PostList = React.createClass({
 
   render: function() {
     var posts = this.props.posts.map((p) => {
-      console.log(p._id)
       return(
         <li key={p._id}>
         <a href={'/walker/post/' + p._id}>{p.content} {p.date}</a>
         <button onClick={this.handleClick}>Request</button>
+          <a href={'/walker/post/' + p._id}>
+            {p.dog.name}
+            {p.dog.breed}
+            {p.dog.age}
+            {p.owner.local.name}
+            {p.date}
+            {p.content}
+          </a>
         </li>
       )
     })
