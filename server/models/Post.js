@@ -13,7 +13,7 @@ const
     timestamps: true
   })
 
-postSchema.pre('findOne', function() {
+postSchema.pre('find', function() {
   this.populate('dog owner')
 })
 
