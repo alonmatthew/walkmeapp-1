@@ -14,14 +14,25 @@ const
     dogs: [{type: mongoose.Schema.Types.ObjectId, ref: 'Dog'}],
     posts: [{type: mongoose.Schema.Types.ObjectId, ref: 'Post'}]
 })
-//
-// ownerSchema.pre('findOne', function() {
-//   this.populate('dogs')
-// })
 
 ownerSchema.pre('findOne', function() {
-  this.populate('posts dogs')
+  this.populate([
+    {path: 'posts', model: 'Post',
+    populate: {
+      path: 'dog',
+      model: 'Dog',
+    }
+  },
+  {path: 'posts', model: 'Post',
+    populate: {
+      path: 'owner',
+      model: 'Owner',
+    }
+  }
+])
 })
+
+
 
 ownerSchema.methods.generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10))

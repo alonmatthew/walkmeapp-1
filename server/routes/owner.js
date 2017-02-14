@@ -73,6 +73,11 @@ ownerRouter.route('/status')
   res.status(200).json({ status: true, user: req.user })
   })
 
+ownerRouter.route('/user')
+  .get((req, res) => {
+    Owner.findOne(req.user).populate("posts").exec()
+  })
+
 ownerRouter.route('/post')
   .get((req,res) => {
     if (req.isAuthenticated()) {
@@ -84,7 +89,9 @@ ownerRouter.route('/post')
   .post((req,res) => {
     var newPost = new Post(req.body)
     console.log(req.body)
-    // newPost.dog = req.body.dog
+    newPost.dog = req.body.dog
+    newPost.requested = false
+    newPost.accepted = false
     newPost.owner = req.user
     newPost.save((err, post) => {
       req.user.posts.push(post)
