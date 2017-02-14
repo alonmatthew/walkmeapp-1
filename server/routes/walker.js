@@ -12,6 +12,7 @@ walkerRouter.route('/')
     res.sendFile(process.env.PWD + '/client/index.html')
   })
 
+
 walkerRouter.route('/signup')
   .get((req,res) => {
     res.sendFile(process.env.PWD + '/client/public/templates/walkerSignup.html', {message: req.flash('signupMessage')})
@@ -61,8 +62,16 @@ walkerRouter.route('/post/:id')
       res.redirect('/')
     }
   })
-  .patch((req, res) => {
-    console.log(req)
+  .patch((req,res) => {
+    console.log(req.body)
+    console.log(req.params.id);
+    Post.findByIdAndUpdate(req.params.id, req.body,  function(err,post) {
+      if (err) console.log(err);
+      console.log(post)
+      res.json(post)
+      console.log(post)
+    })
   })
+
 
 module.exports = walkerRouter

@@ -39,4 +39,10 @@ appRouter.route('/api/posts')
     })
 })
 
+// appRouter.patch('/posts/:id', function(req,res){
+//   Post.findByIdAndUpdate(req.params.id, req.body, {new: true},  function(err,post) {
+//     res.json(post)
+//   })
+// })
+
 module.exports = appRouter
