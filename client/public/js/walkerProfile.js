@@ -10,23 +10,12 @@ const Dashboard = React.createClass({
     }
   },
 
-  // showInfo: function() {
-  //
-  // },
-
   componentWillMount: function() {
 
     const statusRoute = '/walker/status'
     const postRoute = '/api/posts'
     const sendSearch = fetch(postRoute, {credentials: 'same-origin'})
     const sendStatusSearch = fetch(statusRoute, {credentials: 'same-origin'})
-
-    // fetch('/walker/status', {credentials: 'same-origin'}).then((data) => {
-    //   data.json().then((jsonData) => {
-    //     console.log(jsonData)
-    //
-    //   })
-    // })
 
     var self = this
 
@@ -80,11 +69,6 @@ const NavBar = React.createClass({
 })
 
 const PostList = React.createClass({
-  // showPost: function(evt){
-  //   evt.preventDefault
-  //   this.props.showInfo
-  // },
-
   handleClick: function(p) {
     console.log("request button clicked");
     const posts = this.props.posts.map((p) => {

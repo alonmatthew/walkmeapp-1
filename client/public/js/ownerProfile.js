@@ -14,7 +14,7 @@ const Dashboard = React.createClass({
   componentWillMount: function() {
 
     const statusRoute = '/owner/status'
-    const sendSearch = fetch(statusRoute, {credentials: 'same-origin'})
+    const sendStatusSearch = fetch(statusRoute, {credentials: 'same-origin'})
 
     // console.log(sendSearch)
 
@@ -29,9 +29,7 @@ const Dashboard = React.createClass({
       })
     }
 
-
-    sendSearch.then(setUser)
-
+    sendStatusSearch.then(setUser)
   },
 
 

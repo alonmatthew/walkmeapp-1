@@ -34,10 +34,32 @@ const Dashboard = React.createClass({
 })
 
 const Post = React.createClass({
+  handleClick: function(p){
+    console.log("accept button clicked")
+    const posts = this.props.user.posts.map((p) => {
+      console.log('this is line 40');
+      console.log(p._id)
+      return(
+        fetch('/owner/post/' + p._id, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          },
+          method:'PATCH',
+          body: JSON.stringify( { accepted: true } )
+        }).then((res) => res.json()
+            .then((jsonData) => {
+              console.log(jsonData.accepted)
+            }))
+      )
+  })
+  },
+
   render: function() {
     const posts = this.props.user.posts.map((p) => {
       return(
-        <li key={p._id}>{p.content}</li>
+        <li key={p._id}><a href={'/owner/walk/' + p._id}>
+      {p.content}</a><button onClick={this.handleClick}>Accept</button></li>
       )
     })
     return(

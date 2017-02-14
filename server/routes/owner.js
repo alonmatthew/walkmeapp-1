@@ -95,9 +95,42 @@ ownerRouter.route('/post')
     })
   })
 
+ownerRouter.route('/post/:id')
+  .get((req, res) => {
+    if (req.isAuthenticated()) {
+      Post.findById(req.params.id, (err,post) => {
+        console.log(post)
+        res.sendFile(process.env.PWD + '/client/public/templates/ownerPost.html', {post: post})
+      })
+
+    } else {
+      res.redirect('/')
+    }
+  })
+  .patch((req,res) => {
+    console.log(req.body)
+    console.log(req.params.id);
+    Post.findByIdAndUpdate(req.params.id, req.body,  function(err,post) {
+      if (err) console.log(err);
+      console.log(post)
+      res.json(post)
+      console.log(post)
+    })
+  })
+
 ownerRouter.route('/walks')
   .get((req,res) => {
     res.sendFile(process.env.PWD + '/client/public/templates/ownerWalks.html')
+  })
+  .patch((req,res) => {
+    console.log(req.body)
+    console.log(req.params.id);
+    Post.findByIdAndUpdate(req.params.id, req.body,  function(err,post) {
+      if (err) console.log(err);
+      console.log(post)
+      res.json(post)
+      console.log(post)
+    })
   })
 
 module.exports = ownerRouter

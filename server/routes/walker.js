@@ -12,7 +12,6 @@ walkerRouter.route('/')
     res.sendFile(process.env.PWD + '/client/index.html')
   })
 
-
 walkerRouter.route('/signup')
   .get((req,res) => {
     res.sendFile(process.env.PWD + '/client/public/templates/walkerSignup.html', {message: req.flash('signupMessage')})
