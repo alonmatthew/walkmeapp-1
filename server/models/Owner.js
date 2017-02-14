@@ -18,18 +18,24 @@ const
 ownerSchema.pre('findOne', function() {
   this.populate([
     {path: 'posts', model: 'Post',
-    populate: {
-      path: 'dog',
-      model: 'Dog',
+      populate: {
+        path: 'dog',
+        model: 'Dog',
+      }
+    },
+    {path: 'posts', model: 'Post',
+      populate: {
+        path: 'owner',
+        model: 'Owner',
+      }
+    },
+    {path: 'dogs', model: 'Dog',
+      populate: {
+        path: 'owner',
+        model: 'Owner'
+      }
     }
-  },
-  {path: 'posts', model: 'Post',
-    populate: {
-      path: 'owner',
-      model: 'Owner',
-    }
-  }
-])
+  ])
 })
 
 
