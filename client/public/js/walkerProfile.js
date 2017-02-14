@@ -33,6 +33,7 @@ const Dashboard = React.createClass({
     function setPosts(data) {
       data.json().then((jsonData) => {
         console.log(jsonData.posts)
+        console.log(jsonData)
         self.setState({
           posts: jsonData.posts
         })
@@ -112,6 +113,14 @@ const PostList = React.createClass({
         <li key={p._id}>
         <a href={'/walker/post/' + p._id}>{p.content} {p.date}</a>
         <button onClick={this.handleClick}>Request</button>
+          <a href={'/walker/post/' + p._id}>
+            {p.dog.name}<br/>
+            {p.dog.breed}<br/>
+            {p.dog.age}<br/>
+            {p.owner.local.name}<br/>
+            {p.date}<br/>
+            {p.content}<br/>
+          </a>
         </li>
       )
     })
@@ -125,7 +134,6 @@ const PostList = React.createClass({
 
 const Info = React.createClass({
   render: function() {
-    // console.log(this.props)
     const user = this.props.user.local
     return(
       <div>
