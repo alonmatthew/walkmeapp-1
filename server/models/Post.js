@@ -8,7 +8,9 @@ const
     requested: Boolean,
     accepted: Boolean,
     dog: {type: mongoose.Schema.Types.ObjectId, ref: 'Dog'},
-    owner: {type: mongoose.Schema.Types.ObjectId, ref: 'Owner'}
+    owner: {type: mongoose.Schema.Types.ObjectId, ref: 'Owner'},
+    // requested_by: [{type: mongoose.Schema.Types.ObjectId, ref: 'Walker'}],
+    // walker: {type: mongoose.Schema.Types.ObjectId, ref: 'Walker'}
   }, {
     timestamps: true
   })

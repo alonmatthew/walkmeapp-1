@@ -13,6 +13,7 @@ const
   walkerRoutes = require('./routes/walker.js'),
   dotenv = require('dotenv').load({silent: true}),
   flash = require('connect-flash'),
+  MongoDBStore = require('connect-mongodb-session')(session),
 
   PORT = process.env.port || 3000,
   mongooseConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/walkme-app'
@@ -21,6 +22,11 @@ const
 mongoose.connect(mongooseConnectionString, (err) => {
   console.log(err || "Connected to MongoDB at " + mongooseConnectionString)
 })
+
+const store = new MongoDBStore({
+  uri: mongooseConnectionString,
+  collection: 'sessions'
+});
 
 // middleware
 app.use(logger('dev'))
@@ -33,7 +39,8 @@ app.use(session({
 	secret: 'boooooooooom',
 	cookie: {maxAge: 60000000},
 	resave: true,
-	saveUninitialized: false
+	saveUninitialized: false,
+  store: store
 }))
 
 app.use(passport.initialize())

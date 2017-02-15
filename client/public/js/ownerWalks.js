@@ -67,6 +67,7 @@ const Post = React.createClass({
           </li>
       )
     })
+
     return(
       <div>
         <ul>{posts}</ul>
