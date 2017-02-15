@@ -37,12 +37,13 @@ const Walker = React.createClass({
   render: function() {
     console.log("rendering walker component")
     console.log(this.props.user)
-    const posts = this.props.user.posts.map((p) => {
+    var posts = this.props.user.posts.map((p) => {
       return (
       p.requested_by.map((w) => {
-        console.log(w.local.name)
         return (
-            <p key={w._id}>requested by: {w.local.name}</p>
+          <div key={w._id}>
+          <p>requested by: {w.local.name}<button onClick={this.handleClick}>Accept</button></p>
+          </div>
         )
       })
       )
@@ -83,10 +84,10 @@ const Post = React.createClass({
     const posts = this.props.user.posts.map((p) => {
       return(
           <li key={p._id}>
-            <a href={'/owner/walk/' + p._id}>{p.content}</a>
+            {p.dog.name}
+            {p.date}
             {p.requested_by ?
               ( <div>
-                  <button onClick={this.handleClick}>Accept</button>
                   <Walker user={user}/>
                 </div> ) :
               ( <p>Finding a walker...</p> )

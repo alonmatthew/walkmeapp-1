@@ -92,8 +92,7 @@ const PostList = React.createClass({
     const posts = this.props.posts.map((p) => {
       return(
         <div key={p._id}>
-        <h1>Available Walks</h1>
-        {p.walker && (<p></p>) }
+        {p.walker && (<div></div>) }
         {!p.walker && (
           <li>
           <a href={'/walker/post/' + p._id}>{p.dog.name} {p.date}</a><br/>
@@ -106,7 +105,10 @@ const PostList = React.createClass({
       )
     })
     return(
-      <ul>{posts}</ul>
+      <div>
+        <h1>Available Walks</h1>
+        <ul>{posts}</ul>
+      </div>
     )
   }
 })
