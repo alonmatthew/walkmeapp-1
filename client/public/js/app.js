@@ -2,18 +2,14 @@ const Dashboard = React.createClass({
 
   getInitialState: function() {
     return {
-      userStatus: false,
-      user: {}
+      userStatus: false
     }
   },
 
   componentWillMount: function() {
 
-
     const statusRoute = '/owner/status'
     const sendSearch = fetch(statusRoute, {credentials: 'same-origin'})
-    const sendUserSearch = fetch(statusRoute, {credentials: 'same-origin'})
-    // console.log(sendSearch)
 
     var self = this
 
@@ -26,23 +22,20 @@ const Dashboard = React.createClass({
       })
     }
 
-    function setUser(data) {
-      data.json().then((jsonData) => {
-        console.log(jsonData)
-        self.setState({
-          user: jsonData.user
-        })
-      })
-    }
-
-    sendUserSearch.then(setUser)
     sendSearch.then(setUserStatus)
 
   },
 
   render: function() {
     return(
-      <NavBar userStatus={this.state.userStatus} user={this.state.user}/>
+      <div>
+        <NavBar userStatus={this.state.userStatus}/>
+        <Jumbotron />
+        <About />
+        <HowItWorks />
+        <Footer />
+      </div>
+
     )
   }
 })
@@ -52,19 +45,25 @@ const NavBar = React.createClass({
   render: function() {
     var navbar;
     const isLoggedIn = this.props.userStatus
-    const user = this.props.user
     if(!!isLoggedIn) {
-          navbar = <div className="btn btn-group">
-                    { user.local.owner ? ( <button><a href="/owner/profile">Profile</a></button> ) :
-                      ( <button><a href="/walker/profile">Profile</a></button> )
-                    }
+          navbar =
+                <ButtonToolbar>
+                  <div className="btn-group text-center pull-right">
+                    <button className="btn text-center"><a href="/walker/profile">Profile</a></button><br />
+                    <button className="btn text-center"><a href="/owner/profile">Profile</a></button><br />
                   </div>
+                </ButtonToolbar>
     } else {
-          navbar = <div className="btn btn-group">
-                    <button><a href="/walker/login">Login as walker</a></button>
-                    <button><a href="/owner/login">Login as owner</a></button>
-                    <a href="/owner/signup">Sign up as owner</a>
-                    <a href="/walker/signup">Sign up as walker</a><br />
+          navbar =
+                  <div className="pull-right">
+                    <div className="btn-group text-center">
+                      <button className="btn"><a href="/walker/login">Login as walker</a></button>
+                      <button className="btn"><a href="/owner/login">Login as owner</a></button>
+                    </div>
+                    <div className="text-center">
+                      <a href="/owner/signup">Sign up as owner</a>
+                       <a href="/walker/signup">Sign up as walker</a><br />
+                    </div>
                   </div>
       }
 
@@ -76,7 +75,68 @@ const NavBar = React.createClass({
   }
 })
 
+const JumbotronStyle = {
+  marginTop: '5%',
+  backgroundImage: 'url(./images/giphy.gif)',
+  backgroundSize: 'cover',
+  color: '#ffffff',
+  height: '400px',
+}
+
+const Jumbotron = React.createClass({
+  render: function(){
+    return(
+    <div className="jumbotron" style={JumbotronStyle} id="map">
+      <div className="container">
+        <h1 className="text-center">Find a Walker Now.</h1>
+        <p className="text-center">Find a walker on-demand.</p>
+      </div>
+    </div>
+    )
+  }
+})
+
+const About = React.createClass({
+  render: function(){
+    return(
+      <div className="container">
+        <div>
+          <h1 className="text-center">Make dogs all over the US happy!</h1>
+          <h4 className="text-center">Walk Me is app about matching dog owners with their pawfect dog walker for on-demand walking! Reach out to walkers in your community for their support in helping you and your pup!</h4>
+        </div>
+      </div>
+    )
+  }
+})
+
+const HowItWorksStyle = {
+  backgroundColor: '#f17f29',
+  color: '#ffffff',
+}
+
+
+const HowItWorks = React.createClass({
+  render: function(){
+    return(
+      <div style={HowItWorksStyle}>
+        <h1 className="text-center">How it works!</h1>
+        <h4 className="text-center">Create an account an instantly connect!</h4>
+      </div>
+    )
+  }
+})
+
+const Footer = React.createClass({
+  render: function(){
+    return(
+      <div>
+        <h6 className="text-center">© 2017 Walk Me App. All rights reserved.</h6>
+      </div>
+    )
+  }
+})
+
 ReactDOM.render(
   <Dashboard />,
-  document.getElementById('connect')
+  document.getElementById('root')
 )

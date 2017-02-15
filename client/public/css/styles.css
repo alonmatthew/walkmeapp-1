@@ -1,11 +1,10 @@
 /*home*/
-.navbar{
-  margin-bottom: 0;
-  border: 0;
+div.jumbotron{
+  background-image: url("/images/giphy.gif");
 }
 
-.jumbotron{
-  background: #e7e7e7;
+.center{
+  margin: 0 auto;
 }
 
 /*owner profile*/
