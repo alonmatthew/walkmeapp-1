@@ -89,20 +89,19 @@ const PostList = React.createClass({
 },
 
   render: function() {
-    var posts = this.props.posts.map((p) => {
+    const posts = this.props.posts.map((p) => {
       return(
-        <li key={p._id}>
-        <a href={'/walker/post/' + p._id}>{p.content} {p.date}</a>
-        <button onClick={this.handleRequest}>Request</button>
-          <a href={'/walker/post/' + p._id}>
-            {p.dog.name}<br/>
-            {p.dog.breed}<br/>
-            {p.dog.age}<br/>
-            {p.owner.local.name}<br/>
-            {p.date}<br/>
-            {p.content}<br/>
-          </a>
-        </li>
+        <div key={p._id}>
+        {p.walker && (<p></p>) }
+        {!p.walker && (
+          <li>
+          <a href={'/walker/post/' + p._id}>{p.dog.name} {p.date}</a><br/>
+          Owner: {p.owner.local.name}<br/>
+          {p.content}<br/>
+          <button onClick={this.handleRequest}>Request</button>
+          </li>
+        )}
+        </div>
       )
     })
     return(
