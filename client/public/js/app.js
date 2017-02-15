@@ -12,8 +12,6 @@ const Dashboard = React.createClass({
     const statusRoute = '/owner/status'
     const sendSearch = fetch(statusRoute, {credentials: 'same-origin'})
 
-    // console.log(sendSearch)
-
     var self = this
 
     function setUserStatus(data) {
@@ -37,7 +35,6 @@ const Dashboard = React.createClass({
 })
 
 const NavBar = React.createClass({
-
 
   render: function() {
     var navbar;
