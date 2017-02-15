@@ -2,7 +2,8 @@ const Dashboard = React.createClass({
 
   getInitialState: function() {
     return {
-      userStatus: false
+      userStatus: false,
+      user: {}
     }
   },
 
@@ -11,6 +12,8 @@ const Dashboard = React.createClass({
 
     const statusRoute = '/owner/status'
     const sendSearch = fetch(statusRoute, {credentials: 'same-origin'})
+    const sendUserSearch = fetch(statusRoute, {credentials: 'same-origin'})
+    // console.log(sendSearch)
 
     var self = this
 
@@ -23,13 +26,23 @@ const Dashboard = React.createClass({
       })
     }
 
+    function setUser(data) {
+      data.json().then((jsonData) => {
+        console.log(jsonData)
+        self.setState({
+          user: jsonData.user
+        })
+      })
+    }
+
+    sendUserSearch.then(setUser)
     sendSearch.then(setUserStatus)
 
   },
 
   render: function() {
     return(
-      <NavBar userStatus={this.state.userStatus}/>
+      <NavBar userStatus={this.state.userStatus} user={this.state.user}/>
     )
   }
 })
@@ -39,10 +52,12 @@ const NavBar = React.createClass({
   render: function() {
     var navbar;
     const isLoggedIn = this.props.userStatus
+    const user = this.props.user
     if(!!isLoggedIn) {
           navbar = <div className="btn btn-group">
-                    <button><a href="/walker/profile">Profile</a></button>
-                    <button><a href="/owner/profile">Profile</a></button>
+                    { user.local.owner ? ( <button><a href="/owner/profile">Profile</a></button> ) :
+                      ( <button><a href="/walker/profile">Profile</a></button> )
+                    }
                   </div>
     } else {
           navbar = <div className="btn btn-group">

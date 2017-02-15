@@ -58,10 +58,16 @@ const Post = React.createClass({
   render: function() {
     const posts = this.props.user.posts.map((p) => {
       return(
-        <li key={p._id}><a href={'/owner/walk/' + p._id}>
-      {p.content}</a><button onClick={this.handleClick}>Accept</button></li>
+          <li key={p._id}>
+            <a href={'/owner/walk/' + p._id}>{p.content}</a>
+            {p.requested ?
+              ( <div><p>requested by...</p><button onClick={this.handleClick}>Accept</button></div> ) :
+              ( <p>Finding a walker...</p> )
+            }
+          </li>
       )
     })
+
     return(
       <div>
         <ul>{posts}</ul>
