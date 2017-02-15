@@ -49,7 +49,6 @@ const Dashboard = React.createClass({
 
 const NavBar = React.createClass({
 
-
   render: function() {
     var navbar;
     const isLoggedIn = this.props.userStatus
