@@ -31,7 +31,7 @@ const Dashboard = React.createClass({
 
     function setUser(data) {
       data.json().then((jsonData) => {
-        // console.log(jsonData)
+        console.log(jsonData)
         self.setState({
           user: jsonData.user
         })
@@ -47,8 +47,7 @@ const Dashboard = React.createClass({
     // console.log(this.state.user)
     return(
       <div>
-        <NavBar />
-        <Info user={this.state.user} />
+        <Notifications posts={this.state.posts} user={this.state.user}/>
         <PostList posts={this.state.posts} user={this.state.user}/>
       </div>
     )
@@ -89,9 +88,11 @@ const PostList = React.createClass({
 },
 
   render: function() {
+    const feed = this.props.posts
     const posts = this.props.posts.map((p) => {
       return(
         <div key={p._id}>
+        <h1>Available Walks</h1>
         {p.walker && (<p></p>) }
         {!p.walker && (
           <li>
@@ -110,7 +111,26 @@ const PostList = React.createClass({
   }
 })
 
+const Notifications = React.createClass({
 
+  render: function() {
+    const user = this.props.user
+    const acceptedPosts = this.props.posts.map((p) => {
+      return (
+        <div key={p._id}>
+          {p.walker === user._id && (<p>"You've been accepted for a walk!"</p>)}
+        </div>
+      )
+    })
+
+      return (
+        <div>
+          <h1>Notifications</h1>
+          {acceptedPosts}
+        </div>
+      )
+  }
+})
 
 const Info = React.createClass({
   render: function() {

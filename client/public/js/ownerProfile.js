@@ -36,7 +36,6 @@ const Dashboard = React.createClass({
   render: function() {
     return(
       <div>
-        <NavBar />
         <Info user={this.state.user} />
       </div>
     )
