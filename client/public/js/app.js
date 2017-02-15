@@ -64,11 +64,16 @@ const NavBar = React.createClass({
           navbar =
               <div className='text-center' style={{'marginTop':'1em','marginBottom':'1em' }}>
                 { user.local.owner ? (
-                    <a className="btn btn-primary btn-lg" href ="/walker/profile" role="button">Back to Profile</a> ) :
-                    ( <a className="btn btn-primary btn-lg" href="/owner/profile" role="button">Back to Profile</a>)
+                    <a className="btn btn-primary btn-lg" style={{'marginRight':'1em'}} href ="/walker/profile" role="button">Back to Profile</a> ) :
+                    ( <a className="btn btn-primary btn-lg" style={{'marginRight':'1em'}} href="/owner/profile" role="button">Back to Profile</a>)
                 }
-               </div>
-      } else {
+                 { user.local.owner ? (
+                     <a className="btn btn-primary btn-lg" href ="/walker/logout" role="button">Log Out</a> ) :
+                     ( <a className="btn btn-primary btn-lg" href="/owner/logout" role="button">Log Out</a>)
+                 }
+                </div>
+        } else {
+          navbar =
           navbar =
                 <div className='text-center' style={{'marginTop':'1em','marginBottom':'1em' }}>
 
