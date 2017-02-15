@@ -25,15 +25,16 @@
     "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
-    "passport-local-mongoose": "^4.0.0",
-    "react-bootstrap": "^0.30.7"
+    "passport-local-mongoose": "^4.0.0"
   },
   "devDependencies": {
+    "bootstrap": "^3.3.7",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-nodemon": "^2.2.1",
     "gulp-uglify": "^2.0.1",
-    "gulp-uglifycss": "^1.0.6"
+    "gulp-uglifycss": "^1.0.6",
+    "react-bootstrap": "^0.30.7"
   },
   "repository": {
     "type": "git",

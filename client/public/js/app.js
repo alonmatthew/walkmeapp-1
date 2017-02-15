@@ -1,8 +1,10 @@
+
 const Dashboard = React.createClass({
 
   getInitialState: function() {
     return {
-      userStatus: false
+      userStatus: false,
+      user: {}
     }
   },
 
@@ -10,6 +12,7 @@ const Dashboard = React.createClass({
 
     const statusRoute = '/owner/status'
     const sendSearch = fetch(statusRoute, {credentials: 'same-origin'})
+    const sendUserSearch = fetch(statusRoute, {credentials: 'same-origin'})
 
     var self = this
 
@@ -22,14 +25,24 @@ const Dashboard = React.createClass({
       })
     }
 
+    function setUser(data) {
+      data.json().then((jsonData) => {
+        console.log(jsonData)
+        self.setState({
+          user: jsonData.user
+        })
+      })
+    }
+
     sendSearch.then(setUserStatus)
+    sendUserSearch.then(setUser)
 
   },
 
   render: function() {
     return(
       <div>
-        <NavBar userStatus={this.state.userStatus}/>
+        <NavBar userStatus={this.state.userStatus} user={this.state.user}/>
         <Jumbotron />
         <About />
         <HowItWorks />
@@ -42,28 +55,27 @@ const Dashboard = React.createClass({
 
 const NavBar = React.createClass({
 
+
   render: function() {
     var navbar;
     const isLoggedIn = this.props.userStatus
+    const user = this.props.user
     if(!!isLoggedIn) {
           navbar =
-                <ButtonToolbar>
-                  <div className="btn-group text-center pull-right">
-                    <button className="btn text-center"><a href="/walker/profile">Profile</a></button><br />
-                    <button className="btn text-center"><a href="/owner/profile">Profile</a></button><br />
-                  </div>
-                </ButtonToolbar>
-    } else {
+              <div className='text-center' style={{'marginTop':'1em','marginBottom':'1em' }}>
+                { user.local.owner ? (
+                    <a className="btn btn-primary btn-lg" href ="/walker/profile" role="button">Back to Profile</a> ) :
+                    ( <a className="btn btn-primary btn-lg" href="/owner/profile" role="button">Back to Profile</a>)
+                }
+               </div>
+      } else {
           navbar =
-                  <div className="pull-right">
-                    <div className="btn-group text-center">
-                      <button className="btn"><a href="/walker/login">Login as walker</a></button>
-                      <button className="btn"><a href="/owner/login">Login as owner</a></button>
-                    </div>
-                    <div className="text-center">
-                      <a href="/owner/signup">Sign up as owner</a>
-                       <a href="/walker/signup">Sign up as walker</a><br />
-                    </div>
+                <div className='text-center' style={{'marginTop':'1em','marginBottom':'1em' }}>
+
+                    <a className="btn btn-primary btn-lg" style={{'marginRight':'1em'}} href="/walker/login" role="button">Login as walker</a>
+                   <a className="btn btn-primary btn-lg" href="/owner/login" role="button">Login as owner</a><br />
+                   <a style={{'marginRight':'5em'}} href="/owner/signup" >Sign up as owner</a>
+                     <a href="/walker/signup">Sign up as walker</a>
                   </div>
       }
 
@@ -76,7 +88,6 @@ const NavBar = React.createClass({
 })
 
 const JumbotronStyle = {
-  marginTop: '5%',
   backgroundImage: 'url(./images/giphy.gif)',
   backgroundSize: 'cover',
   color: '#ffffff',
@@ -88,7 +99,7 @@ const Jumbotron = React.createClass({
     return(
     <div className="jumbotron" style={JumbotronStyle} id="map">
       <div className="container">
-        <h1 className="text-center">Find a Walker Now.</h1>
+        <h1 className='text-center' style={{'marginTop':'1em'}}>Find a Walker Now.</h1>
         <p className="text-center">Find a walker on-demand.</p>
       </div>
     </div>
