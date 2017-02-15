@@ -36,20 +36,41 @@ const Dashboard = React.createClass({
   render: function() {
     return(
       <div>
+      <Notifications user={this.state.user} posts={this.state.user.posts}/>
         <Info user={this.state.user} />
       </div>
     )
   }
 })
 
-const NavBar = React.createClass({
+// const NavBar = React.createClass({
+//   render: function() {
+//     return(
+//       <div>
+//         <ul>
+//           <li><a href="/">Home</a></li>
+//           <li><a href="/owner/logout">Logout</a></li>
+//         </ul>
+//       </div>
+//     )
+//   }
+// })
+
+const Notifications = React.createClass({
   render: function() {
-    return(
+    const user = this.props.user
+    const requestedMessage = this.props.posts.map((p) => {
+      return (
+        <div key={p._id}>
+          {p.requested_by.length && (<p>"You have a new request!"</p>)}
+        </div>
+      )
+    })
+
+    return (
       <div>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/owner/logout">Logout</a></li>
-        </ul>
+        <h1>Notifications</h1>
+        {requestedMessage}
       </div>
     )
   }

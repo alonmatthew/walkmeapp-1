@@ -54,18 +54,18 @@ const Dashboard = React.createClass({
   }
 })
 
-const NavBar = React.createClass({
-  render: function() {
-    return(
-      <div>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/walker/logout">Logout</a></li>
-        </ul>
-      </div>
-    )
-  }
-})
+// const NavBar = React.createClass({
+//   render: function() {
+//     return(
+//       <div>
+//         <ul>
+//           <li><a href="/">Home</a></li>
+//           <li><a href="/walker/logout">Logout</a></li>
+//         </ul>
+//       </div>
+//     )
+//   }
+// })
 
 const PostList = React.createClass({
   handleRequest: function(p) {
@@ -115,7 +115,7 @@ const Notifications = React.createClass({
 
   render: function() {
     const user = this.props.user
-    const acceptedPosts = this.props.posts.map((p) => {
+    const acceptedMessage = this.props.posts.map((p) => {
       return (
         <div key={p._id}>
           {p.walker === user._id && (<p>"You've been accepted for a walk!"</p>)}
@@ -126,7 +126,7 @@ const Notifications = React.createClass({
       return (
         <div>
           <h1>Notifications</h1>
-          {acceptedPosts}
+          {acceptedMessage}
         </div>
       )
   }
