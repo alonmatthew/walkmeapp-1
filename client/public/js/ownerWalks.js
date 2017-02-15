@@ -33,12 +33,32 @@ const Dashboard = React.createClass({
   }
 })
 
+const Walker = React.createClass({
+  render: function() {
+    console.log("rendering walker component")
+    console.log(this.props.user)
+    const posts = this.props.user.posts.map((p) => {
+      return (
+      p.requested_by.map((w) => {
+        console.log(w.local.name)
+        return (
+            <p key={w._id}>requested by: {w.local.name}</p>
+        )
+      })
+      )
+    })
+    return (
+      <div>{posts}</div>
+    )
+  }
+})
+
 const Post = React.createClass({
   handleClick: function(p){
-    console.log("accept button clicked")
+    // console.log("accept button clicked")
     const posts = this.props.user.posts.map((p) => {
-      console.log('this is line 40');
-      console.log(p._id)
+      // console.log('this is line 40');
+      // console.log(p._id)
       return(
         fetch('/owner/post/' + p._id, {
           headers: {
@@ -56,12 +76,16 @@ const Post = React.createClass({
   },
 
   render: function() {
+    const user = this.props.user
     const posts = this.props.user.posts.map((p) => {
       return(
           <li key={p._id}>
             <a href={'/owner/walk/' + p._id}>{p.content}</a>
-            {p.requested ?
-              ( <div><p>requested by...</p><button onClick={this.handleClick}>Accept</button></div> ) :
+            {p.requested_by ?
+              ( <div>
+                  <button onClick={this.handleClick}>Accept</button>
+                  <Walker user={user}/>
+                </div> ) :
               ( <p>Finding a walker...</p> )
             }
           </li>
