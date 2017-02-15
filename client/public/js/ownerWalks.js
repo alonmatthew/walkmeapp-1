@@ -57,6 +57,8 @@ const Post = React.createClass({
   handleClick: function(p){
     // console.log("accept button clicked")
     const posts = this.props.user.posts.map((p) => {
+      return p.requested_by.map((w) => {
+
       // console.log('this is line 40');
       // console.log(p._id)
       return(
@@ -66,12 +68,13 @@ const Post = React.createClass({
             'Content-Type': 'application/json'
           },
           method:'PATCH',
-          body: JSON.stringify( { accepted: true } )
+          body: JSON.stringify( { accepted: true, walker: w } )
         }).then((res) => res.json()
             .then((jsonData) => {
               console.log(jsonData.accepted)
             }))
       )
+    })
   })
   },
 
