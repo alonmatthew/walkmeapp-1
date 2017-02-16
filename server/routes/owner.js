@@ -115,6 +115,7 @@ ownerRouter.route('/post/:id')
       Walker.findById(req.body.walker._id, (err, walker) => {
         if (err) console.log(err);
         walker.posts.push(post)
+        post.requested_by = []
         walker.save()
       res.json(post)
       })
