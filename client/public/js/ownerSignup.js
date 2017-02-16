@@ -13,7 +13,7 @@ const Info = React.createClass({
   render: function() {
     return(
       <div>
-        <h1 className="text-center">Help your community of pups!</h1>
+        <h1 className="text-center">Let your community of you!</h1>
       </div>
     )
   }
