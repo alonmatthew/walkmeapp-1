@@ -82,7 +82,6 @@ const PostList = React.createClass({
     }).then((res) => res.json()
         .then((jsonData) => {
           console.log(jsonData.requested_by)
-          this.setState({ showMe : true} )
         }))
   },
 
@@ -109,6 +108,7 @@ const Post = React.createClass({
 
   handleClick: function(p) {
     this.props.onRequest(this.props.post)
+    this.setState({ showMe : true} )
   },
 
   render: function() {
