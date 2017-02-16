@@ -136,7 +136,6 @@ const Post = React.createClass({
 })
 
 const Notifications = React.createClass({
-
   render: function() {
     const user = this.props.user
     const acceptedMessage = this.props.posts.map((p) => {
@@ -148,7 +147,7 @@ const Notifications = React.createClass({
     })
 
       return (
-        <div>
+        <div className="">
           <h1>Notifications</h1>
           {acceptedMessage}
         </div>
