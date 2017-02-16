@@ -78,8 +78,9 @@ const NavBar = React.createClass({
 
                     <a className="btn btn-primary btn-lg" style={{'marginRight':'1em'}} href="/walker/login" role="button">Login as walker</a>
                    <a className="btn btn-primary btn-lg" href="/owner/login" role="button">Login as owner</a><br />
-                   <a style={{'marginRight':'5em'}} href="/owner/signup" >Sign up as owner</a>
-                     <a href="/walker/signup">Sign up as walker</a>
+                   <a style={{'marginRight':'4em'}} href="/walker/signup">Sign up as a walker</a>
+                   <a href="/owner/signup" >Sign up as an owner</a>
+
                   </div>
       }
 
