@@ -37,8 +37,10 @@ const Dashboard = React.createClass({
     return(
       <div>
       <Jumbotron user={this.state.user}/>
+      <div className="container">
       <Notifications user={this.state.user} posts={this.state.user.posts}/>
-        <Info user={this.state.user} />
+      <Pets user={this.state.user} />
+      </div>
       </div>
     )
   }
@@ -50,7 +52,7 @@ const Jumbotron = React.createClass({
     return(
     <div className="jumbotron">
       <div className="container">
-        <h1>{user.name}'s Dashboard</h1><br />
+        <h1>{user.name}s Dashboard</h1><br />
       </div>
     </div>
     )
@@ -63,13 +65,14 @@ const Notifications = React.createClass({
     const requestedMessage = this.props.posts.map((p) => {
       return (
         <div key={p._id}>
-          {p.requested_by.length && (<p>"You have a new request!"</p>)}
+          {p.requested_by && (<a href="/owner/walks">"You have a new request!"</a>)}
         </div>
       )
     })
 
     return (
-      <div>
+      <div className="col-md-6">
+        <RequestButton />
         <h1>Notifications</h1>
         {requestedMessage}
       </div>
@@ -77,7 +80,15 @@ const Notifications = React.createClass({
   }
 })
 
-const Info = React.createClass({
+const RequestButton = React.createClass({
+  render: function() {
+    return (
+      <button><a href="/owner/post">Request a Walk!</a></button>
+    )
+  }
+})
+
+const Pets = React.createClass({
   render: function() {
     // console.log(this.props.user)
     const user = this.props.user.local
@@ -87,13 +98,10 @@ const Info = React.createClass({
       )
     })
     return(
-      <div>
-        <a href="/owner/post">Request a Walk</a><br/>
-        <h1>{user.name}s Dashboard</h1><br />
-        <h3>{user.name}</h3><br />
+      <div className="col-md-6">
         <h1>Your Pets</h1>
         <ul>{dogs}</ul>
-        <a href="/owner/pets">Register your dog</a>
+        <button><a href="/owner/pets">Register your dog</a></button>
       </div>
     )
   }
