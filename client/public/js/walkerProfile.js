@@ -61,7 +61,7 @@ const Jumbotron = React.createClass({
     return(
     <div className="jumbotron">
       <div className="container">
-        <h1>{user.name}s Dashboard</h1><br />
+        <h1>{user.name}'s Dashboard</h1><br />
       </div>
     </div>
     )

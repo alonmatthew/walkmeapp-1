@@ -1,7 +1,8 @@
 const NavBar = React.createClass({
+
   render: function(){
     return(
-      <nav className="">
+      <nav className="NavBar">
         <ul id="sidebar" className="nav nav-stacked affix">
           <li><a className="text-center"><i className="fa fa-bars fa-3x" aria-hidden="true"></i></a></li>
           <li>

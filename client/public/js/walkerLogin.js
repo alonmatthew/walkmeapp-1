@@ -1,7 +1,20 @@
 const Dashboard = React.createClass({
   render: function() {
     return(
-      <LoginForm />
+      <div>
+        <Info />
+        <LoginForm />
+      </div>
+    )
+  }
+})
+
+const Info = React.createClass({
+  render: function() {
+    return(
+      <div>
+        <h1 className="text-center">The pups need you!</h1>
+      </div>
     )
   }
 })
@@ -9,18 +22,22 @@ const Dashboard = React.createClass({
 const LoginForm = React.createClass({
   render: function() {
     return(
-      <div>
         <form method="POST" action="/walker/login">
-          Full Name: <input type="text" name="name"/><br />
-          Password: <input type="password" name="password"/><br />
-          <button type="submit">Sign In</button>
+          <div className="form-group" >
+            <label>Full Name: </label>
+            <input className="form-control" type="text" name="name"/>
+          </div>
+          <div className="form-group" >
+            <label>Password: </label>
+            <input className="form-control" type="password" name="password"/>
+          </div>
+          <button className="btn btn-primary" type="submit">Sign In</button>
         </form>
-      </div>
     )
   }
 })
 
 ReactDOM.render(
   <Dashboard />,
-  document.getElementById('root')
+  document.getElementById('login')
 )
