@@ -73,12 +73,11 @@ const NavBar = React.createClass({
                 </div>
         } else {
           navbar =
-          navbar =
                 <div className='text-center' style={{'marginTop':'1em','marginBottom':'1em' }}>
 
                     <a className="btn btn-primary btn-lg" style={{'marginRight':'1em'}} href="/walker/login" role="button">Login as walker</a>
                    <a className="btn btn-primary btn-lg" href="/owner/login" role="button">Login as owner</a><br />
-                   <a style={{'marginRight':'4em'}} href="/walker/signup">Sign up as a walker</a>
+                   <a style={{'marginRight':'3.5em'}} href="/walker/signup">Sign up as a walker</a>
                    <a href="/owner/signup" >Sign up as an owner</a>
 
                   </div>

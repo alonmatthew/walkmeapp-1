@@ -22,7 +22,7 @@ const NavBar = React.createClass({
           </li>
           <li>
             <a href="/walker/walks" className="text-center"><i className="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
-            <p className="text-center">Scheduled Walk</p>
+            <p className="text-center">Scheduled Walks</p>
             </a>
           </li>
           <li>
