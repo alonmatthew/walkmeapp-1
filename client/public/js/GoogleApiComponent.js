@@ -122,7 +122,7 @@ componentDidMount: function() {
       // map_marker.setMap(map)
 
     return(
-    <div id='map'>
+    <div id='map' className="container">
       <div id='map-canvas' style={{height:'400px', width: '100%'}}></div>
     </div>
     )
