@@ -34,34 +34,10 @@ const Dashboard = React.createClass({
 })
 
 const Walker = React.createClass({
-  render: function() {
-    console.log("rendering walker component")
-    console.log(this.props.user)
-    var posts = this.props.user.posts.map((p) => {
-      return (
-      p.requested_by.map((w) => {
-        return (
-          <div key={w._id}>
-          <p>requested by: {w.local.name}<button onClick={this.handleClick}>Accept</button></p>
-          </div>
-        )
-      })
-      )
-    })
-    return (
-      <div>{posts}</div>
-    )
-  }
-})
-
-const Post = React.createClass({
   handleClick: function(p){
     // console.log("accept button clicked")
     const posts = this.props.user.posts.map((p) => {
       return p.requested_by.map((w) => {
-
-      // console.log('this is line 40');
-      // console.log(p._id)
       return(
         fetch('/owner/post/' + p._id, {
           headers: {
@@ -80,25 +56,43 @@ const Post = React.createClass({
   },
 
   render: function() {
-    const user = this.props.user
+    const requests = this.props.user.posts.map((p) => {
+      return p.requested_by.map((w) => {
+        return <p key={w._id}>
+                requested by: {w.local.name}
+                <button onClick={this.handleClick}>Accept</button>
+              </p>
+      })
+    })
+
+    return (
+      <div>
+        {requests}
+      </div>
+    )
+  }
+})
+
+const Post = React.createClass({
+  render: function() {
     const posts = this.props.user.posts.map((p) => {
       return(
-          <li key={p._id}>
+          <h4 key={p._id}>
             {p.dog.name}
             {p.date}
             {p.requested_by ?
               ( <div>
-                  <Walker user={user}/>
+                  <Walker user={this.props.user}/>
                 </div> ) :
               ( <p>Finding a walker...</p> )
             }
-          </li>
+          </h4>
       )
     })
 
     return(
       <div>
-        <ul>{posts}</ul>
+        {posts}
       </div>
     )
   }
