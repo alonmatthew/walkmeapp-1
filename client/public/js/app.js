@@ -136,7 +136,7 @@ const HowItWorks = React.createClass({
     return(
       <div style={HowItWorksStyle}>
         <h1 className="text-center">How it works!</h1>
-        <h4 className="text-center">Create an account an instantly connect!</h4>
+        <h4 className="text-center">Create an account and instantly connect!</h4>
       </div>
     )
   }
