@@ -47,6 +47,7 @@ const Dashboard = React.createClass({
     // console.log(this.state.user)
     return(
       <div>
+        <Jumbotron user={this.state.user}/>
         <Notifications posts={this.state.posts} user={this.state.user}/>
         <PostList posts={this.state.posts} user={this.state.user}/>
       </div>
@@ -54,18 +55,18 @@ const Dashboard = React.createClass({
   }
 })
 
-// const NavBar = React.createClass({
-//   render: function() {
-//     return(
-//       <div>
-//         <ul>
-//           <li><a href="/">Home</a></li>
-//           <li><a href="/walker/logout">Logout</a></li>
-//         </ul>
-//       </div>
-//     )
-//   }
-// })
+const Jumbotron = React.createClass({
+  render: function(){
+    const user = this.props.user.local
+    return(
+    <div className="jumbotron">
+      <div className="container">
+        <h1>{user.name}'s Dashboard</h1><br />
+      </div>
+    </div>
+    )
+  }
+})
 
 const PostList = React.createClass({
   handleRequest: function(p) {
@@ -145,8 +146,6 @@ const Info = React.createClass({
     )
   }
 })
-
-
 
 ReactDOM.render(
   <Dashboard />,

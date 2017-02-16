@@ -1,19 +1,3 @@
-//     // initialize google maps
-
-
-
-
-
-// export class Container extends React.Component {
-//   render() {
-//     return (
-//       <div>
-//         <Map />
-//       </div>
-//     )
-//   }
-// }
-
 const Map = React.createClass({
 
   getInitialState: function() {

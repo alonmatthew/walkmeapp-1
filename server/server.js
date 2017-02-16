@@ -14,6 +14,8 @@ const
   dotenv = require('dotenv').load({silent: true}),
   flash = require('connect-flash'),
   MongoDBStore = require('connect-mongodb-session')(session),
+  FontAwesome = require('react-fontawesome')
+
 
   PORT = process.env.port || 3000,
   mongooseConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/walkme-app'
