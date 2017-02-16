@@ -8,122 +8,19 @@
   <script src="/vendor/babel-core-5.8.25.js"></script>
   <script src="/vendor/react.js"></script>
   <script src="/vendor/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" charset="utf-8"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <title>Walk Me - On-Demand Dog Walking</title>
   <style media="screen">
-    .navbar{
-      margin-bottom: 0;
-      border: 0;
-    }
-
-    .jumbotron{
-      background: #e7e7e7;
-    }
-
-    .right {
-      float: right !important;
-    }
-
-    @media (min-width: 979px) {
-
-    #midCol.affix-top {
-        position:fixed;
-    	  width:265px;
-    	  margin-right:10px;
-
-    }
-
-    #midCol.affix {
-        position:static;
-        width:100%;
-    }
-
+  #content {
+    margin-top: 1.5em;
   }
-
-  @media (min-width: 767px) {
-    .affix,.affix-top {
-        position:fixed;
-    }
-  }
-
   </style>
-
 </head>
 <body>
-  <div class="container">
-  <div class="row">
-    <div id="root"></div>
-    <div id="page" class="col-sm-10 col-sm-offset-2 right"></div>
-    <div id="map" class="col-sm-10 right"></div>
-  </div>
-  </div>
-  <script type="text/babel" src="/js/GoogleApiComponent.js"></script>
-  <script type="text/babel">
-    const NavBar = React.createClass({
-      render: function(){
-        return(
-          <nav className="col-sm-2">
-          <ul id="sidebar" className="nav nav-stacked affix">
-            <li><a href=""/"">Home</a></li>
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Schedule</a></li>
-            <li><a href="#">Payments</a></li>
-            <li><a href="#">Logout</a></li>
-            <li><a href="#">Help</a></li>
-          </ul>
-          </nav>
-        )
-      }
-    })
+    <div id="nav"></div>
+  <script type="text/babel" src="/js/testNavigation.js"></script>
 
-    const Jumbotron = React.createClass({
-      render: function(){
-        return(
-        <div className="jumbotron col-sm-10">
-          <div className="container">
-            <h1>Find a Walker Now.</h1>
-            <p>Find a walker on-demand.</p>
-          </div>
-        </div>
-        )
-      }
-    })
-
-    const Page = React.createClass({
-      render: function(){
-        return(
-          <div>
-            <div className="container">
-            <h1>This is the tester page.</h1>
-            </div>
-          </div>        )
-      }
-    })
-
-    const Theme = React.createClass({
-      render: function(){
-        return(
-          <div>
-            <NavBar />
-            <Jumbotron />
-          </div>
-        )
-      }
-    })
-
-    ReactDOM.render(
-      <div>
-      <Theme />
-      </div>,
-      document.getElementById('root')
-    )
-
-    ReactDOM.render(
-      <div>
-      <Page />
-      </div>,
-      document.getElementById('page')
-    )
-  </script>
 </body>
 </html>

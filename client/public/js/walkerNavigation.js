@@ -1,5 +1,5 @@
 const NavBar = React.createClass({
-
+  
   render: function(){
     return(
       <nav className="NavBar">

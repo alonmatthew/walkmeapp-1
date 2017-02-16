@@ -66,7 +66,7 @@ walkerRouter.route('/post/:id')
     console.log(req.body)
     Post.findById(req.params.id, (err, post) => {
       if(err) throw err
-      post.requested_by.push(req.body.user._id)
+      post.requested_by.push(req.body.user_id)
       post.save()
       res.json(post)
     })

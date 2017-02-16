@@ -31,7 +31,7 @@ const Dashboard = React.createClass({
 
     function setUser(data) {
       data.json().then((jsonData) => {
-        console.log(jsonData)
+        console.log(jsonData.user)
         self.setState({
           user: jsonData.user
         })
@@ -68,29 +68,53 @@ const Jumbotron = React.createClass({
   }
 })
 
+
 const PostList = React.createClass({
-  handleRequest: function(p) {
+  onRequest: function(p){
+    const user = this.props.user
+    fetch('/walker/post/' + p._id, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method:'PATCH',
+      body: JSON.stringify({user_id: user._id})
+    }).then((res) => res.json()
+        .then((jsonData) => {
+          console.log(jsonData.requested_by)
+          this.setState({ showMe : true} )
+        }))
+  },
+
+  render: function(){
     const posts = this.props.posts.map((p) => {
-      const user = this.props.user
-      return(
-        fetch('/walker/post/' + p._id, {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          },
-          method:'PATCH',
-          body: JSON.stringify( { user } )
-        }).then((res) => res.json()
-            .then((jsonData) => {
-              // console.log(jsonData.requested_by)
-            }))
-      )
-  })
-},
+      return (<Post key={p._id} post={p} onRequest={this.onRequest} />)
+
+    })
+
+    return(
+      <div>
+        <h1>Available Walks</h1>
+        <ul>{posts}</ul>
+      </div>
+    )
+  }
+
+})
+
+const Post = React.createClass({
+  getInitialState : function() {
+      return { showMe : false }
+  },
+
+  handleClick: function(p) {
+    this.props.onRequest(this.props.post)
+  },
 
   render: function() {
-    const feed = this.props.posts
-    const posts = this.props.posts.map((p) => {
+    // const feed = this.props.posts
+    // const posts = this.props.posts.map((p) => {
+      const p = this.props.post
       return(
         <div key={p._id}>
         {p.walker && (<div></div>) }
@@ -99,18 +123,15 @@ const PostList = React.createClass({
           <a href={'/walker/post/' + p._id}>{p.dog.name} {p.date}</a><br/>
           Owner: {p.owner.local.name}<br/>
           {p.content}<br/>
-          <button onClick={this.handleRequest}>Request</button>
+          { this.state.showMe ?
+            (<p style={{'color':'#003300'}}>Request Made!</p>) :
+              (<button onClick={this.handleClick}>Request</button>)
+          }
           </li>
-        )}
+          )}
         </div>
       )
-    })
-    return(
-      <div>
-        <h1>Available Walks</h1>
-        <ul>{posts}</ul>
-      </div>
-    )
+    // })
   }
 })
 
