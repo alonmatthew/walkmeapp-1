@@ -62,14 +62,20 @@ walkerRouter.route('/post/:id')
     }
   })
   .patch((req,res) => {
+    console.log("req.body on patch request")
     console.log(req.body)
-    console.log(req.params.id);
-    Post.findByIdAndUpdate(req.params.id, req.body,  function(err,post) {
-      if (err) console.log(err);
-      console.log(post)
+    Post.findById(req.params.id, (err, post) => {
+      if(err) throw err
+      post.requested_by.push(req.body.user._id)
+      post.save()
       res.json(post)
-      console.log(post)
     })
+    // Post.findByIdAndUpdate(req.params.id, req.body,  function(err,post) {
+    //   if (err) console.log(err);
+    //   console.log(post)
+    //   res.json(post)
+    //   console.log(post)
+    // })
   })
 
 

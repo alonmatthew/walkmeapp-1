@@ -61,7 +61,7 @@ const Jumbotron = React.createClass({
     return(
     <div className="jumbotron">
       <div className="container">
-        <h1>{user.name}'s Dashboard</h1><br />
+        <h1>{user.name}s Dashboard</h1><br />
       </div>
     </div>
     )
@@ -79,7 +79,7 @@ const PostList = React.createClass({
             'Content-Type': 'application/json'
           },
           method:'PATCH',
-          body: JSON.stringify( { requested_by: user } )
+          body: JSON.stringify( { user } )
         }).then((res) => res.json()
             .then((jsonData) => {
               // console.log(jsonData.requested_by)
