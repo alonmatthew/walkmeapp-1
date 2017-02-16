@@ -16,7 +16,7 @@ const
   })
 
 postSchema.pre('find', function() {
-  this.populate('dog owner requested_by')
+  this.populate('dog owner requested_by walker')
 })
 
 

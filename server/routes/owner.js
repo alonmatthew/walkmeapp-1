@@ -4,6 +4,7 @@ const
   passportConfig = require('../config/passport.js'),
   ownerRouter = express.Router(),
   Dog = require('../models/Dog.js'),
+  Walker = require('../models/Walker.js'),
   Owner = require('../models/Owner.js'),
   Post = require('../models/Post.js')
 
@@ -108,29 +109,21 @@ ownerRouter.route('/post/:id')
     }
   })
   .patch((req,res) => {
-    console.log(req.body)
-    console.log(req.params.id);
+    console.log("walker on line 111")
+    console.log(req.body.walker)
     Post.findByIdAndUpdate(req.params.id, req.body,  function(err,post) {
-      if (err) console.log(err);
-      console.log(post)
+      Walker.findById(req.body.walker._id, (err, walker) => {
+        if (err) console.log(err);
+        walker.posts.push(post)
+        walker.save()
       res.json(post)
-      console.log(post)
+      })
     })
   })
 
 ownerRouter.route('/walks')
   .get((req,res) => {
     res.sendFile(process.env.PWD + '/client/public/templates/ownerWalks.html')
-  })
-  .patch((req,res) => {
-    console.log(req.body)
-    console.log(req.params.id);
-    Post.findByIdAndUpdate(req.params.id, req.body,  function(err,post) {
-      if (err) console.log(err);
-      console.log(post)
-      res.json(post)
-      console.log(post)
-    })
   })
 
 module.exports = ownerRouter

@@ -34,8 +34,8 @@ const Dashboard = React.createClass({
 })
 
 const Walker = React.createClass({
-  handleClick: function(p){
-    // console.log("accept button clicked")
+  handleClick: function(p, evt){
+    evt.preventDefault()
     const posts = this.props.user.posts.map((p) => {
       return p.requested_by.map((w) => {
       return(

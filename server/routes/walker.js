@@ -70,12 +70,6 @@ walkerRouter.route('/post/:id')
       post.save()
       res.json(post)
     })
-    // Post.findByIdAndUpdate(req.params.id, req.body,  function(err,post) {
-    //   if (err) console.log(err);
-    //   console.log(post)
-    //   res.json(post)
-    //   console.log(post)
-    // })
   })
 
 
