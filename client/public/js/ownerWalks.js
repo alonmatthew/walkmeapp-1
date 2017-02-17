@@ -29,8 +29,8 @@ const Dashboard = React.createClass({
   render: function() {
     return(
       <div className="container">
-      <PostList user={this.state.user} />
-      <UserPostsList user={this.state.user} />
+        <UserPostsList user={this.state.user} />
+        <PostList user={this.state.user} />
       </div>
     )
   }
@@ -48,8 +48,8 @@ const UserPostsList = React.createClass({
               </div>)
     })
     return (
-      <div className="col-md-6">
-        <h1>Your Posts</h1>
+      <div>
+        <h1 className="text-center">Your Posts</h1>
         {userPosts}
       </div>
     )
@@ -82,7 +82,7 @@ const UserPosts = React.createClass({
     return (
       <div>
         {userPosts}
-        <button className="btn btn-default" onClick={this.handleDelete}>Delete</button>
+        <button className="btn btn-danger" onClick={this.handleDelete}>Delete</button>
       </div>
     )
   }
@@ -121,7 +121,7 @@ const Requests = React.createClass({
     })
 
     return (
-      <div className="col-md-6">
+      <div>
         {requests}
       </div>
     )
@@ -133,7 +133,7 @@ const PostList = React.createClass({
     const posts = this.props.user.posts.map((p) => {
       return(
           <div key={p._id}>
-          <h4>{p.dog.name}</h4><br/>
+          <h4>{p.dog.name}</h4>
             <p>{p.content}</p>
             <p>{p.date}</p>
             {p.requested_by.length ?
@@ -147,7 +147,8 @@ const PostList = React.createClass({
     })
 
     return(
-      <div className="col-md-6">
+      <div>
+        <h1 className="text-center">Your Requests</h1>
         {posts}
       </div>
     )
