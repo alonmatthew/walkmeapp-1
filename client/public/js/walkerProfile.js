@@ -128,9 +128,11 @@ const Post = React.createClass({
         {p.walker && (<div></div>) }
         {!p.walker && (
           <li>
-          <a href={'/walker/post/' + p._id}>{p.dog.name} {p.date}</a>
-          Owner: {p.owner.local.name}
-          {p.content}<br/>
+            {p.dog.name}<br/>
+          {p.dog.breed}<br/>
+            {p.date}<br/>
+            Owner: {p.owner.local.name}<br/>
+            Note: {p.content}<br/>
           { this.state.showMe ?
             (<p style={{'color':'#003300'}}>Request Made!</p>) :
               (<button className="btn btn-default" onClick={this.handleClick}>Request</button>)
