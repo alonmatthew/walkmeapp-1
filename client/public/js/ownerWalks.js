@@ -41,7 +41,7 @@ const UserPostsList = React.createClass({
   render: function() {
     const userPosts = this.props.user.posts.map((p) => {
       return(<div key={p._id}>
-                <h3>{p.dog.name}</h3>
+                <h4>{p.dog.name}</h4>
                 <p>{p.content}</p>
                 <p>{p.date}</p>
                 <UserPosts key={p._id} user={this.props.user} post={p}/>
@@ -115,12 +115,13 @@ const Requests = React.createClass({
     const requests = post.requested_by.map((w) => {
       return (<div key={w._id}>
               <p>requested by: {w.local.name}
-              <button className="btn btn-default" onClick={this.handleClick}>Accept</button></p>
+              <button className="btn btn-default" onClick={this.handleClick}>Accept</button>
+              <button className="btn btn-danger">Decline</button></p>
             </div>)
     })
 
     return (
-      <div>
+      <div className="col-md-6">
         {requests}
       </div>
     )
@@ -131,16 +132,17 @@ const PostList = React.createClass({
   render: function() {
     const posts = this.props.user.posts.map((p) => {
       return(
-          <h4 key={p._id}>
-            {p.dog.name}
-            {p.date}
+          <div key={p._id}>
+          <h4>{p.dog.name}</h4><br/>
+            <p>{p.content}</p>
+            <p>{p.date}</p>
             {p.requested_by.length ?
               ( <div>
                   <Requests user={this.props.user} post={p}/>
                 </div> ) :
               ( <p>Finding a walker...</p> )
             }
-          </h4>
+        </div>
       )
     })
 
