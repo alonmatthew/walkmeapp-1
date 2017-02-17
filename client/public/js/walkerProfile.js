@@ -1,3 +1,8 @@
+var testCoords = [
+  {lat:-23.885838,lng:140.273438},
+  {lat:35.746512,lng:98.789063}
+]
+
 const Dashboard = React.createClass({
   getInitialState: function() {
     return{
@@ -174,8 +179,6 @@ const Map = React.createClass({
     return {
       map: {},
       map_marker: {},
-      lat: null,
-      lng: null,
       lineCoordinatesArray: []
     }
   },
@@ -185,14 +188,70 @@ const Map = React.createClass({
     var self = this
     console.log("Google Maps Initialized")
     console.log(self.state.lat, self.state.lng)
-    var map = new google.maps.Map(document.getElementById('map-canvas'), {
+
+
+
+    const map = new google.maps.Map(document.getElementById('map-canvas'), {
       zoom: 15,
-      center: {lat: self.state.lat, lng : self.state.lng, alt: 0}
+      // center: {lat: self.state.lat, lng : self.state.lng, alt: 0}
+      center: this.state.lineCoordinatesArray[0]
+    })
+
+    const lineCoordinatesPath = new google.maps.Polyline({
+      path: self.state.lineCoordinatesArray,
+      geodesic: true,
+      strokeColor: '#2E10FF',
+      strokeOpacity: 1.0,
+      strokeWeight: 2
     });
 
-    var map_marker = new google.maps.Marker({position: {lat: self.state.lat, lng: self.state.lng}, map: map});
-    map_marker.setMap(map);
+
+
+    self.setState({
+      map,
+      lineCoordinatesPath
+    }, () => {
+      var map_marker = new google.maps.Marker({position: self.state.lineCoordinatesArray[0], map: map});
+      map_marker.setMap(self.state.map);
+      lineCoordinatesPath.setMap(self.state.map)
+      setInterval(() => {
+        // var testCoord = testCoords.pop()
+        // self.pushCoordToArray(testCoord.lat, testCoord.lng)
+        self.pushCoordToArray(lat, lng)
+      }, 5000)
+    })
   },
+
+pushCoordToArray: function(lat, lng){
+  this.setState({
+    lineCoordinatesArray:[
+      ...this.state.lineCoordinatesArray,
+      {lat: lat, lng: lng}
+    ]
+  }, this.redraw)
+  // this.state.lineCoordinatesArray.push(new google.maps.LatLng(latIn, lngIn))
+},
+
+redraw: function() {
+  // map.setCenter({lat: lat, lng : lng, alt: 0})
+  // map_marker.setPosition(this.state.lineCoordinatesArray[0])
+  // this.pushCoordToArray({lat, lng})
+  //
+  //
+  //
+  // var lineCoordinatesPath = new google.maps.Polyline({
+  //   path: lineCoordinatesArray,
+  //   geodesic: true,
+  //   strokeColor: '#2E10FF',
+  //   strokeOpacity: 1.0,
+  //   strokeWeight: 2
+  // });
+  //
+  // lineCoordinatesPath.setMap(this.state.map)
+  // google.maps.event.trigger(this.state.map, 'resize')
+  this.state.lineCoordinatesPath.setPath(this.state.lineCoordinatesArray)
+},
+
 
 componentDidMount: function() {
 
@@ -202,13 +261,15 @@ componentDidMount: function() {
     console.log(this)
       navigator.geolocation.getCurrentPosition((position) => {
 
-
-        this.setState({
-          lat: position.coords["latitude"],
-          lng: position.coords["longitude"]
-        }, () => this.initializeMap())
-        return;
-
+        // if(this.state.map.mapTypeId) {
+          this.setState({
+            lineCoordinatesArray: [
+              {lat: position.coords["latitude"],lng: position.coords["longitude"]},
+              {lat: 34.019495, lng: -118.491381}
+            ]
+          }, () => this.initializeMap())
+          return;
+        // }
       },
       (error) => {
         console.log("Error: ", error)
@@ -217,26 +278,7 @@ componentDidMount: function() {
     );
   }
 
-
-
-
-
   // moves the marker and center of map
-  function redraw() {
-    map.setCenter({lat: lat, lng : lng, alt: 0})
-    map_marker.setPosition({lat: lat, lng : lng, alt: 0})
-    pushCoordToArray(lat, lng)
-
-    var lineCoordinatesPath = new google.maps.Polyline({
-      path: lineCoordinatesArray,
-      geodesic: true,
-      strokeColor: '#2E10FF',
-      strokeOpacity: 1.0,
-      strokeWeight: 2
-    });
-
-    lineCoordinatesPath.setMap(map)
-  }
 
 },
 
