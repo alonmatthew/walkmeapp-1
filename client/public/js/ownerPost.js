@@ -78,7 +78,7 @@ const PostForm = React.createClass({
             </div>
 
             <div className="col-md-3">
-            <button type="submit">Submit</button>
+            <button className="btn btn-default" type="submit">Submit</button>
             </div>
 
           </div>

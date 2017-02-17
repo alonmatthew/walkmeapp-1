@@ -133,7 +133,7 @@ const Post = React.createClass({
           {p.content}<br/>
           { this.state.showMe ?
             (<p style={{'color':'#003300'}}>Request Made!</p>) :
-              (<button onClick={this.handleClick}>Request</button>)
+              (<button className="btn btn-default" onClick={this.handleClick}>Request</button>)
           }
           </li>
           )}

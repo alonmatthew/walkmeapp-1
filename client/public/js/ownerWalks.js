@@ -82,7 +82,7 @@ const UserPosts = React.createClass({
     return (
       <div>
         {userPosts}
-        <button onClick={this.handleDelete}>Delete</button>
+        <button className="btn btn-default" onClick={this.handleDelete}>Delete</button>
       </div>
     )
   }
@@ -115,7 +115,7 @@ const Requests = React.createClass({
     const requests = post.requested_by.map((w) => {
       return (<div key={w._id}>
               <p>requested by: {w.local.name}
-              <button onClick={this.handleClick}>Accept</button></p>
+              <button className="btn btn-default" onClick={this.handleClick}>Accept</button></p>
             </div>)
     })
 
