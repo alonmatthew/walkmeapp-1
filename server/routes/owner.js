@@ -124,7 +124,7 @@ ownerRouter.route('/post/:id')
   .delete((req,res) => {
     Post.findByIdAndRemove(req.params.id, (err, post) => {
       if(err) throw (err)
-      res.redirect('/profile')
+      res.json({success: true, message: "request deleted"})
     })
   })
 
