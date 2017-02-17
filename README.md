@@ -11,6 +11,8 @@
 -User can see his/her schedule of walks as a 'dog owner' and the information of the matched 'dog walker'.
 -User can see the real-time geolocation and path of the 'dog walker' and dog once the walk has begun.
 
+##Technologies
+
 ##Wire Frames
 ![alt text](images/original_wireframe_1.png")
 ![alt text](images/original_wireframe_2.png")

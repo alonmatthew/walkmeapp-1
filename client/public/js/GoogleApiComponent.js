@@ -84,10 +84,6 @@ componentDidMount: function() {
     );
   }
 
-
-
-
-
   // moves the marker and center of map
   function redraw() {
     map.setCenter({lat: lat, lng : lng, alt: 0})
