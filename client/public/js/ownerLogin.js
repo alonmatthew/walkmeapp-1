@@ -24,7 +24,7 @@ const LoginForm = React.createClass({
     return(
         <form method="POST" action="/owner/login">
           <div className="form-group" >
-            <label>Full Name: </label>
+            <label>Username: </label>
             <input className="form-control" type="text" name="name"/>
           </div>
           <div className="form-group" >
