@@ -59,12 +59,29 @@ const PostForm = React.createClass({
     })
 
     return(
-      <div>
+      <div className="container">
         <form method="POST" action="/owner/post">
-          Date: <input type="text" id="datepicker" name="date"></input>
-          <select name="dog">{dogs}</select>
-          Notes to the walker: <input name="content" />
-          <button type="submit">Submit</button>
+
+          <div className="form-group">
+            <div className="col-md-3">
+              <select name="dog">{dogs}</select>
+            </div>
+          </div>
+
+          <div className="form-group">
+            <div className="col-md-3">
+              Notes to the walker: <input className="form-control" name="content" />
+            </div>
+
+            <div className="col-md-3">
+              Date: <input className="form-control" type="text" id="datepicker" name="date"></input>
+            </div>
+
+            <div className="col-md-3">
+            <button type="submit">Submit</button>
+            </div>
+
+          </div>
         </form>
       </div>
     )
