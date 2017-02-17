@@ -1,6 +1,8 @@
 var testCoords = [
-  {lat:-23.885838,lng:140.273438},
-  {lat:35.746512,lng:98.789063}
+  {lat:34.0071634,lng:-118.49089},
+  {lat:34.007234,lng:-118.5238122},
+  {lat:34.0010124,lng:-118.487983},
+  {lat:34.0129709,lng:-118.4974042},
 ]
 
 const Dashboard = React.createClass({
@@ -215,9 +217,9 @@ const Map = React.createClass({
       map_marker.setMap(self.state.map);
       lineCoordinatesPath.setMap(self.state.map)
       setInterval(() => {
-        // var testCoord = testCoords.pop()
-        // self.pushCoordToArray(testCoord.lat, testCoord.lng)
-        self.pushCoordToArray(lat, lng)
+        var testCoord = testCoords.pop()
+        self.pushCoordToArray(testCoord.lat, testCoord.lng)
+        // self.pushCoordToArray(lat, lng)
       }, 5000)
     })
   },
