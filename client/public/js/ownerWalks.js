@@ -28,7 +28,7 @@ const Dashboard = React.createClass({
 
   render: function() {
     return(
-      <div>
+      <div className="container">
       <PostList user={this.state.user} />
       <UserPostsList user={this.state.user} />
       </div>
@@ -48,7 +48,7 @@ const UserPostsList = React.createClass({
               </div>)
     })
     return (
-      <div>
+      <div className="col-md-6">
         <h1>Your Posts</h1>
         {userPosts}
       </div>
@@ -145,7 +145,7 @@ const PostList = React.createClass({
     })
 
     return(
-      <div>
+      <div className="col-md-6">
         {posts}
       </div>
     )
