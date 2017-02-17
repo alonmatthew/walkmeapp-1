@@ -49,7 +49,7 @@ const Post = React.createClass({
     })
     return (
       <div>
-        <h1>Scheduled Walks</h1>
+        <h1 className="text-center">Scheduled Walks</h1>
         {posts}
       </div>
     )

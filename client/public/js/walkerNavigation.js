@@ -16,7 +16,7 @@ const NavBar = React.createClass({
             </a>
           </li>
           <li>
-            <a href="/walker/walks" className="text-center"><i className="fa fa-paw fa-3x" aria-hidden="true"></i>
+            <a href="/walker/currentwalk" className="text-center"><i className="fa fa-paw fa-3x" aria-hidden="true"></i>
             <p className="text-center">Current Walk</p>
             </a>
           </li>

@@ -78,4 +78,8 @@ walkerRouter.route('/walks')
     res.sendFile(process.env.PWD + '/client/public/templates/walkerWalks.html')
   })
 
+walkerRouter.route('/currentwalk')
+  .get((req,res) => {
+    res.sendFile(process.env.PWD + '/client/public/templates/walkerCurrentWalk.html')
+  })
 module.exports = walkerRouter
