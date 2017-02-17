@@ -1,7 +1,7 @@
 const Dashboard = React.createClass({
   render: function() {
     return(
-      <div>
+      <div style={{'backgroundColor':'#ffffff', 'marginTop': '5em', 'paddingLeft': '3em', 'paddingRight': '3em', 'paddingTop': '3em', 'paddingBottom': '5em', 'borderRadius': '15px'}}>
         <Info />
         <WalkerForm />
       </div>
@@ -12,7 +12,7 @@ const Dashboard = React.createClass({
 const Info = React.createClass({
   render: function() {
     return(
-      <div>
+      <div style={{'marginBottom': '2em'}}>
         <h1 className="text-center">Help your community of pups!</h1>
       </div>
     )
