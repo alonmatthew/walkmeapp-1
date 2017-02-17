@@ -62,7 +62,7 @@ const Jumbotron = React.createClass({
     return(
     <div className="jumbotron" style={{'backgroundColor': '#ffffff','marginTop': '1em','marginBottom': '1em'}}>
       <div className="container">
-        <h1>{user.name}'s Dashboard</h1><br />
+        <h1 className="text-center">{user.name}'s Dashboard</h1><br />
       </div>
     </div>
     )
@@ -94,7 +94,7 @@ const PostList = React.createClass({
 
     return(
       <div style={{'backgroundColor':'#ffffff', 'padding': '1em', 'marginBottom': '1em'}}>
-        <h1>Available Walks</h1>
+        <h1 className="text-center">Available Walks</h1>
         <ul>{posts}</ul>
       </div>
     )
@@ -121,8 +121,8 @@ const Post = React.createClass({
         {p.walker && (<div></div>) }
         {!p.walker && (
           <li>
-          <a href={'/walker/post/' + p._id}>{p.dog.name} {p.date}</a><br/>
-          Owner: {p.owner.local.name}<br/>
+          <a href={'/walker/post/' + p._id}>{p.dog.name} {p.date}</a>
+          Owner: {p.owner.local.name}
           {p.content}<br/>
           { this.state.showMe ?
             (<p style={{'color':'#003300'}}>Request Made!</p>) :
@@ -149,7 +149,7 @@ const Notifications = React.createClass({
 
       return (
         <div className="" style={{'backgroundColor':'#ffffff', 'padding': '1em', 'marginBottom': '1em'}}>
-          <h1>Notifications</h1>
+          <h1 className="text-center">Notifications</h1>
           {acceptedMessage}
         </div>
       )
@@ -244,6 +244,7 @@ componentDidMount: function() {
 
     return(
     <div id='map' style={{'backgroundColor':'#ffffff', 'padding': '1em', 'marginBottom': '1em'}}>
+    <h1 className="text-center">Find Nearby Walks</h1>
       <div id='map-canvas' style={{'height':'300px', 'width': '100%', 'paddingRight': '1em' }}></div>
     </div>
     )
