@@ -24,7 +24,7 @@ const OwnerForm = React.createClass({
     return(
         <form method="POST" action="/owner/signup">
           <div className="form-group" >
-            <label>Full Name: </label>
+            <label>Username: </label>
             <input className="form-control" type="text" name="name"/>
           </div>
           <div className="form-group" >
@@ -35,7 +35,7 @@ const OwnerForm = React.createClass({
             <label>Street Address: </label>
             <input className="form-control" type="password" name="password"/>
           </div>
-          <button className="btn btn-primary" type="submit">Sign In</button>
+          <button className="btn btn-primary" type="submit">Sign Up</button>
         </form>
     )
   }

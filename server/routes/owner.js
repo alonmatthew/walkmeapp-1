@@ -92,7 +92,7 @@ ownerRouter.route('/post')
       req.user.posts.push(post)
       req.user.save()
       if(err) return console.log(err)
-      res.redirect('/')
+      res.redirect('/owner/profile')
     })
   })
 
