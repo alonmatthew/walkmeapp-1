@@ -28,7 +28,7 @@ const Dashboard = React.createClass({
 
   render: function() {
     return(
-      <div className="container">
+      <div className="">
         <Post user={this.state.user} />
       </div>
     )
