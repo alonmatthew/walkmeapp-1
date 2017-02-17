@@ -28,7 +28,62 @@ const Dashboard = React.createClass({
 
   render: function() {
     return(
+      <div>
       <PostList user={this.state.user} />
+      <UserPostsList user={this.state.user} />
+      </div>
+    )
+  }
+})
+
+const UserPostsList = React.createClass({
+
+  render: function() {
+    const userPosts = this.props.user.posts.map((p) => {
+      return(<div key={p._id}>
+                <h3>{p.dog.name}</h3>
+                <p>{p.content}</p>
+                <p>{p.date}</p>
+                <UserPosts key={p._id} user={this.props.user} post={p}/>
+              </div>)
+    })
+    return (
+      <div>
+        <h1>Your Posts</h1>
+        {userPosts}
+      </div>
+    )
+  }
+})
+
+const UserPosts = React.createClass({
+  handleDelete: function(p, evt) {
+    evt.preventDefault()
+    const post = this.props.post
+    return (
+      fetch('/owner/post/' + post._id, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method:'DELETE',
+        body: { p }
+      }).then((res) => res.json()
+          .then((jsonData) => {
+            console.log(jsonData)
+          }))
+    )
+  },
+
+  render: function() {
+    const userPosts = this.props.user.posts.map((p) => {
+      return(<div key={p._id}></div>)
+    })
+    return (
+      <div>
+        {userPosts}
+        <button onClick={this.handleDelete}>Delete</button>
+      </div>
     )
   }
 })

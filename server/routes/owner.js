@@ -121,6 +121,12 @@ ownerRouter.route('/post/:id')
       })
     })
   })
+  .delete((req,res) => {
+    Post.findByIdAndRemove(req.params.id, (err, post) => {
+      if(err) throw (err)
+      res.json({success: true, message: "request deleted"})
+    })
+  })
 
 ownerRouter.route('/walks')
   .get((req,res) => {
