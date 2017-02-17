@@ -11,7 +11,7 @@ const NavBar = React.createClass({
             </a>
           </li>
           <li>
-            <a href="#" className="text-center"><i className="fa fa-user fa-3x" aria-hidden="true"></i>
+            <a href="/owner/profile" className="text-center"><i className="fa fa-user fa-3x" aria-hidden="true"></i>
             <p className="text-center">Profile</p>
             </a>
           </li>
