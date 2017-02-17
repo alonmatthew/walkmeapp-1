@@ -1,5 +1,5 @@
 const NavBar = React.createClass({
-  
+
   render: function(){
     return(
       <nav className="NavBar">
@@ -45,7 +45,6 @@ const NavBar = React.createClass({
     )
   }
 })
-
 
 ReactDOM.render(
   <NavBar />,

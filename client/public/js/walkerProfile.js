@@ -148,7 +148,7 @@ const Notifications = React.createClass({
     })
 
       return (
-        <div className="" style={{'backgroundColor':'#ffffff', 'padding': '1em', 'marginBottom': '1em'}}>
+        <div  style={{'backgroundColor':'#ffffff', 'padding': '1em', 'marginBottom': '1em'}}>
           <h1 className="text-center">Notifications</h1>
           {acceptedMessage}
         </div>

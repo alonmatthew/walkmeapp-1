@@ -17,7 +17,7 @@ const NavBar = React.createClass({
           </li>
           <li>
             <a href="/owner/walks" className="text-center"><i className="fa fa-calendar-o fa-3x" aria-hidden="true"></i>
-            <p className="text-center">Walks</p>
+            <p className="text-center">Scheduled Walks</p>
             </a>
           </li>
           <li>
@@ -40,7 +40,6 @@ const NavBar = React.createClass({
     )
   }
 })
-
 
 ReactDOM.render(
   <NavBar />,
