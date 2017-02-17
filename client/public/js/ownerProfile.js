@@ -64,7 +64,7 @@ const Notifications = React.createClass({
     const requestedMessage = this.props.posts.map((p) => {
       return (
         <div key={p._id} >
-          {p.requested_by && (<a href="/owner/walks">"You have a new request!"</a>)}
+          {p.requested_by.length ? (<a href="/owner/walks">"You have a new request!"</a>) : (<p></p>)}
         </div>
       )
     })

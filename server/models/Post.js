@@ -4,7 +4,7 @@ const
   Owner = require('./Owner.js'),
   postSchema = mongoose.Schema({
     content: String,
-    date: Date,
+    date: String,
     // requested: Boolean,
     accepted: Boolean,
     dog: {type: mongoose.Schema.Types.ObjectId, ref: 'Dog'},
