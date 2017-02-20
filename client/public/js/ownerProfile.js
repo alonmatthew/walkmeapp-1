@@ -92,13 +92,17 @@ const Pets = React.createClass({
     const user = this.props.user.local
     const dogs = this.props.user.dogs.map((d) => {
       return(
-        <li key={d._id}>{d.name} <br/> Breed: {d.breed} <br/> Age: {d.age}</li>
+        <div className="" key={d._id}>
+            <h1>{d.name}</h1>
+            <h5>{d.breed}</h5>
+            <h5>Age {d.age}</h5>
+        </div>
       )
     })
     return(
       <div style={{'backgroundColor':'#ffffff', 'padding': '1em', 'marginBottom': '1em'}}>
         <h1 className="text-center">Your Pets</h1>
-        <ul>{dogs}</ul>
+        <div>{dogs}</div>
         <button className="btn btn-default"><a href="/owner/pets">Register your dog</a></button>
         <RequestButton />
       </div>
