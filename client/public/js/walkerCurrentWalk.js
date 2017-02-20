@@ -1,3 +1,10 @@
+var testCoords = [
+  {lat:34.0071634,lng:-118.49089},
+  {lat:34.007234,lng:-118.5238122},
+  {lat:34.0010124,lng:-118.487983},
+  {lat:34.0129709,lng:-118.4974042},
+]
+
 const Dashboard = React.createClass({
   getInitialState: function() {
     return{

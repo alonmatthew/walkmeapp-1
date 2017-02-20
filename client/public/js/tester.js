@@ -1,9 +1,9 @@
-var testCoords = [
-  {lat:34.0071634,lng:-118.49089},
-  {lat:34.007234,lng:-118.5238122},
-  {lat:34.0010124,lng:-118.487983},
-  {lat:34.0129709,lng:-118.4974042},
-]
+// var testCoords = [
+//   {lat:34.0071634,lng:-118.49089},
+//   {lat:34.007234,lng:-118.5238122},
+//   {lat:34.0010124,lng:-118.487983},
+//   {lat:34.0129709,lng:-118.4974042},
+// ]
 
 const Dashboard = React.createClass({
   getInitialState: function() {
@@ -122,7 +122,6 @@ const Post = React.createClass({
   render: function() {
     // const feed = this.props.posts
     // const posts = this.props.posts.map((p) => {
-
       const p = this.props.post
       return(
         <div key={p._id}>
@@ -141,8 +140,6 @@ const Post = React.createClass({
           </li>
           )}
         </div>
-
-
       )
     // })
   }
@@ -190,6 +187,7 @@ const Map = React.createClass({
     }
   },
 
+
   initializeMap: function() {
     var self = this
     console.log("Google Maps Initialized")
@@ -209,6 +207,8 @@ const Map = React.createClass({
       strokeWeight: 2
     });
 
+
+
     self.setState({
       map,
       lineCoordinatesPath
@@ -217,11 +217,9 @@ const Map = React.createClass({
       map_marker.setMap(self.state.map);
       lineCoordinatesPath.setMap(self.state.map)
       setInterval(() => {
-        // var lat =
-        // var lng =
-        var testCoord = testCoords.pop()
-        self.pushCoordToArray(testCoord.lat, testCoord.lng)
-        // self.pushCoordToArray(lat, lng)
+        // var testCoord = testCoords.pop()
+        // self.pushCoordToArray(testCoord.lat, testCoord.lng)
+        self.pushCoordToArray(lat: lat, lng: lng)
       }, 5000)
     })
   },
@@ -258,16 +256,18 @@ redraw: function() {
 
 
 componentDidMount: function() {
+
   var coords = {}
   // sets your location as default
   if (navigator.geolocation) {
     console.log(this)
       navigator.geolocation.getCurrentPosition((position) => {
+
         // if(this.state.map.mapTypeId) {
           this.setState({
             lineCoordinatesArray: [
-              {lat: position.coords["latitude"],lng: position.coords["longitude"]}
-              // ,{lat: 34.019495, lng: -118.491381}
+              {lat: position.coords["latitude"],lng: position.coords["longitude"]},
+              {lat: 34.019495, lng: -118.491381}
             ]
           }, () => this.initializeMap())
           return;
