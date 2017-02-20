@@ -24,15 +24,47 @@ const OwnerForm = React.createClass({
     return(
         <form method="POST" action="/owner/signup">
           <div className="form-group" >
-            <label>Username: </label>
-            <input className="form-control" type="text" name="name"/>
+            <label>First Name: </label>
+            <input className="form-control" type="text" name="fName"/>
           </div>
           <div className="form-group" >
-            <label>Address: </label>
-            <input className="form-control" type="text" name="address"/>
+            <label>Last Name: </label>
+            <input className="form-control" type="text" name="lName"/>
           </div>
           <div className="form-group" >
-            <label>Street Address: </label>
+            <label>Email: </label>
+            <input className="form-control" type="text" name="email"/>
+          </div>
+          <div className="form-group" >
+            <label>Birthday: </label>
+            <input className="form-control" type="text" name="birthday"/>
+          </div>
+          <div className="form-group" >
+            <label>Phone Number: </label>
+            <input className="form-control" type="text" name="phoneNumber"/>
+          </div>
+          <div className="form-group" >
+            <label>Address 1: </label>
+            <input className="form-control" type="text" name="address1"/>
+          </div>
+          <div className="form-group" >
+            <label>Address 2: </label>
+            <input className="form-control" type="text" name="address2"/>
+          </div>
+          <div className="form-group" >
+            <label>City: </label>
+            <input className="form-control" type="text" name="city"/>
+          </div>
+          <div className="form-group" >
+            <label>State: </label>
+            <input className="form-control" type="text" name="state"/>
+          </div>
+          <div className="form-group" >
+            <label>Zip Code: </label>
+            <input className="form-control" type="text" name="zip"/>
+          </div>
+          <div className="form-group" >
+            <label>Password: </label>
             <input className="form-control" type="password" name="password"/>
           </div>
           <button className="btn btn-primary" type="submit">Sign Up</button>

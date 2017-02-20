@@ -6,9 +6,17 @@ const
   Post = require('./Post.js'),
   ownerSchema = new mongoose.Schema({
     local: {
-      name: String,
+      fName: String,
+      lName: String,
+      birthday: String,
+      address1: String,
+      address2: String,
+      city: String,
+      state: String,
+      zip: String,
+      phoneNumber: String,
+      email: String,
       password: String,
-      address: String,
       messages: [],
       owner: Boolean
     },
