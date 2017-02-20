@@ -22,12 +22,13 @@ passport.deserializeUser((id, done) => {
 })
 
 passport.use('local-owner-signup', new LocalStrategy({
-  usernameField: 'name',
+  usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
-}, (req, name, password, done) => {
+}, (req, email, password, done) => {
   console.log("local signup hit")
-  Owner.findOne({'local.name': name}, (err, owner) => {
+  console.log(req.body)
+  Owner.findOne({'local.email': email}, (err, owner) => {
     if(err) {
       return done(err)
     }
@@ -35,8 +36,16 @@ passport.use('local-owner-signup', new LocalStrategy({
       return done(null, false, req.flash('signupMessage', 'That username is taken.'))
     }
     var newOwner = new Owner()
-    newOwner.local.name = name
-    newOwner.local.address = req.body.address
+    newOwner.local.email = email
+    newOwner.local.fName = req.body.fName
+    newOwner.local.lName = req.body.lName
+    newOwner.local.birthday = req.body.birthday
+    newOwner.local.address1 = req.body.address1
+    newOwner.local.address2 = req.body.address2
+    newOwner.local.city = req.body.city
+    newOwner.local.state = req.body.state
+    newOwner.local.zip = req.body.zip
+    newOwner.local.phoneNumber = req.body.phoneNumber
     newOwner.local.password = newOwner.generateHash(password)
     newOwner.local.owner = true
     newOwner.save((err, owner) => {
@@ -46,12 +55,12 @@ passport.use('local-owner-signup', new LocalStrategy({
   })
 }))
 passport.use('local-walker-signup', new LocalStrategy({
-  usernameField: 'name',
+  usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
-}, (req, name, password, done) => {
+}, (req, email, password, done) => {
   console.log("local signup hit")
-  Walker.findOne({'local.name': name}, (err, walker) => {
+  Walker.findOne({'local.email': email}, (err, walker) => {
     if(err) {
       return done(err)
     }
@@ -59,8 +68,16 @@ passport.use('local-walker-signup', new LocalStrategy({
       return done(null, false, req.flash('signupMessage', 'That username is taken.'))
     }
     var newWalker = new Walker()
-    newWalker.local.name = name
-    newWalker.local.address = req.body.address
+    newWalker.local.email = email
+    newWalker.local.fName = req.body.fName
+    newWalker.local.lName = req.body.lName
+    newWalker.local.birthday = req.body.birthday
+    newWalker.local.address1 = req.body.address1
+    newWalker.local.address2 = req.body.address2
+    newWalker.local.city = req.body.city
+    newWalker.local.state = req.body.state
+    newWalker.local.zip = req.body.zip
+    newWalker.local.phoneNumber = req.body.phoneNumber
     newWalker.local.password = newWalker.generateHash(password)
     newWalker.local.walker = true
     newWalker.save((err, walker) => {
@@ -71,12 +88,12 @@ passport.use('local-walker-signup', new LocalStrategy({
 }))
 
 passport.use('local-walker-login', new LocalStrategy({
-  usernameField: 'name',
+  usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
-}, (req, name, password, done) => {
+}, (req, email, password, done) => {
   console.log(req.body)
-  Walker.findOne({'local.name': name}, (err, walker) => {
+  Walker.findOne({'local.email': email}, (err, walker) => {
     if(err) return done(err)
     if(!walker) return done(null, false, req.flash('loginMessage', 'No user found...'))
     if(!walker.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Wrong Password'))
@@ -85,12 +102,12 @@ passport.use('local-walker-login', new LocalStrategy({
 }))
 
 passport.use('local-owner-login', new LocalStrategy({
-  usernameField: 'name',
+  usernameField: 'email',
   passwordField: 'password',
   passReqToCallback: true
-}, (req, name, password, done) => {
+}, (req, email, password, done) => {
   console.log(req)
-  Owner.findOne({'local.name': name}, (err, owner) => {
+  Owner.findOne({'local.email': email}, (err, owner) => {
     if(err) return done(err)
     if(!owner) return done(null, false, req.flash('loginMessage', 'No user found...'))
     if(!owner.validPassword(password)) return done(null, false, req.flash('loginMessage', 'Wrong Password'))

@@ -51,7 +51,7 @@ const Jumbotron = React.createClass({
     return(
     <div className="jumbotron" style={{'backgroundColor': '#ffffff','marginTop': '1em','marginBottom': '1em'}}>
       <div className="container">
-        <h1 className="text-center">{user.name}'s Dashboard</h1><br />
+        <h1 className="text-center">{user.fName}'s Dashboard</h1><br />
       </div>
     </div>
     )
