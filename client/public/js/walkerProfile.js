@@ -69,7 +69,7 @@ const Jumbotron = React.createClass({
     return(
     <div className="jumbotron" style={{'backgroundColor': '#ffffff','marginTop': '1em','marginBottom': '1em'}}>
       <div className="container">
-        <h1 className="text-center">{user.fName}'s Dashboard</h1><br />
+        <h1 className="text-center">{user.name}'s Dashboard</h1><br />
       </div>
     </div>
     )
@@ -102,7 +102,19 @@ const PostList = React.createClass({
     return(
       <div style={{'backgroundColor':'#ffffff', 'padding': '1em', 'marginBottom': '1em'}}>
         <h1 className="text-center">Available Walks</h1>
-        <ul>{posts}</ul>
+        <table className="table">
+          <thead>
+          <tr>
+            <th>Dog</th>
+            <th>Breed</th>
+            <th>Date</th>
+            <th>Owner</th>
+            <th>Notes</th>
+            <th>Action</th>
+          </tr>
+          </thead>
+        {posts}
+        </table>
       </div>
     )
   }
@@ -125,22 +137,24 @@ const Post = React.createClass({
 
       const p = this.props.post
       return(
-        <div key={p._id}>
-        {p.walker && (<div></div>) }
+        <tbody key={p._id}>
+        {p.walker && (<tr></tr>) }
         {!p.walker && (
-          <li>
-            {p.dog.name}<br/>
-          {p.dog.breed}<br/>
-            {p.date}<br/>
-            Owner: {p.owner.local.name}<br/>
-            Note: {p.content}<br/>
+          <tr>
+            <td>{p.dog.name}</td>
+            <td>{p.dog.breed}</td>
+            <td>{p.date}</td>
+            <td>{p.owner.local.name}</td>
+            <td>Note: {p.content}</td>
+            <td>
           { this.state.showMe ?
             (<p style={{'color':'#003300'}}>Request Made!</p>) :
-              (<button className="btn btn-default" onClick={this.handleClick}>Request</button>)
+              (<button className="btn btn-primary" onClick={this.handleClick}>Request</button>)
           }
-          </li>
+          </td>
+          </tr>
           )}
-        </div>
+        </tbody>
 
 
       )
