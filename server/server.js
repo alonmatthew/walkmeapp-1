@@ -16,6 +16,7 @@ const
   MongoDBStore = require('connect-mongodb-session')(session),
   FontAwesome = require('react-fontawesome'),
 
+  PORT = process.env.PORT || 3000,
   mongooseConnectionString = process.env.MONGODB_URL || 'mongodb://localhost/walkme-app'
 
 // mongodb connection
@@ -61,6 +62,6 @@ app.use((req, res, next) => {
 })
 
 // server connection
-app.listen(process.env.PORT, (err) => {
+app.listen(PORT, (err) => {
   console.log(err || "Server running on port: " + PORT)
 })
