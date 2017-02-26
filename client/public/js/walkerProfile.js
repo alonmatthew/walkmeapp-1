@@ -144,7 +144,7 @@ const Post = React.createClass({
             <td>{p.dog.name}</td>
             <td>{p.dog.breed}</td>
             <td>{p.date}</td>
-            <td>{p.owner.local.name}</td>
+            <td>{p.owner.local.fName}</td>
             <td>Note: {p.content}</td>
             <td>
           { this.state.showMe ?
@@ -187,8 +187,8 @@ const Info = React.createClass({
     const user = this.props.user.local
     return(
       <div>
-        <h1>{user.name}s Info</h1><br />
-        <h3>{user.name}</h3><br />
+        <h1>{user.fName}s Info</h1><br />
+        <h3>{user.fName}</h3><br />
       </div>
     )
   }

@@ -114,7 +114,7 @@ const Requests = React.createClass({
     const post = this.props.post
     const requests = post.requested_by.map((w) => {
       return (<div key={w._id}>
-              <p>requested by: {w.local.name}
+              <p>requested by: {w.local.fName}
               <button className="btn btn-default" onClick={this.handleClick}>Accept</button>
               <button className="btn btn-danger">Decline</button></p>
             </div>)
